@@ -1,1 +1,1 @@
-from get_team_info import *
+from get_data import *
