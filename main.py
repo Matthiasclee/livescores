@@ -1,1 +1,3 @@
-from get_data import *
+from bot import *
+
+start_bot()
