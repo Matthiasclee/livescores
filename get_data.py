@@ -1,11 +1,15 @@
 import json
 import urllib.request
+from settings import *
 
-DATA_SOURCE = 1 # 0: file, 1: website
+DATA_SOURCE = get_setting("data_source")
 TEAM_INFO_URL = "https://scoreboard.uscyberpatriot.org/api/team/scores.php?team%5B%5D="
 IMAGE_INFO_URL = "https://scoreboard.uscyberpatriot.org/api/image/scores.php?team%5B%5D="
 
 def get_data(team):
+    if len(team) == 4:
+        team = f"{get_setting('season')}-{team}"
+
     if DATA_SOURCE == 0:
         team_file = open(f"score_archives/{team}_team.json")
         team_json_data = team_file.read()
