@@ -1,10 +1,14 @@
-class TeamScore:
-    def __init__(html_data):
-        self.html_data = html_data
+from bs4 import BeautifulSoup
+from table_parser import *
 
-    def parse():
-        parsed_data = BeautifulSoup(self.html_data)
-        team_data_headers = parsed_data.select_one("#table-teams_wrapper").find_all("thead")[0]
-        team_data_body = parsed_data.select_one("#table-teams_wrapper").find_all("tbody")[0]
+def extract_scores(html):
+    parsed_data = BeautifulSoup(html, features="html.parser")
+    team_data_headers = parsed_data.select_one("#table-teams_wrapper").find_all("thead")[0]
+    team_data_body = parsed_data.select_one("#table-teams_wrapper").find_all("tbody")[0]
 
-        image_data = parsed_data.select_one("#table-images_wrapper")
+    team_data = parse_table_by_headers(team_data_headers, team_data_body)
+    image_data = {}
+
+    image_data_headers = parsed_data.select_one("#table-images_wrapper")
+
+    return { "team_data": team_data, "image_data": image_data }
