@@ -31,7 +31,7 @@ async def greet_command(interaction: discord.Interaction, name: str, age: int):
         color=discord.Color.green(),
     )
     embed.set_footer(text="Thanks for using the bot!")
-    await interaction.response.send_message(embed=embed)
+    await interaction.response.send_message(embed=embed, ephemeral=False)
 
 def start_bot():
     bot.run(get_setting("discord_secret"))
