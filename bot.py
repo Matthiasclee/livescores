@@ -28,15 +28,17 @@ async def on_ready():
     team_id = "Team ID"
 )
 async def team_command(interaction: discord.Interaction, team_id: str):
+    await interaction.response.defer(ephemeral=False, thinking=True)
 
     data = get_data(team_id)
 
     if data['error']:
-        embed = make_error_embed("Error fetching data", "Something went wrong while getting the team data.")
+        embed = make_error_embed("Error fetching data", data["error"])
     else:
         embed = make_team_embed(data)
 
-    await interaction.response.send_message(embed=embed, ephemeral=False)
+    #await interaction.response.send_message(embed=embed, ephemeral=False)
+    await interaction.followup.send(embed=embed, ephemeral=False)
 
 def start_bot():
     bot.run(get_setting("discord_secret"))

@@ -22,9 +22,12 @@ def get_data(team):
         team_json_data = urllib.request.urlopen(f"{TEAM_INFO_URL}{team}").read()
         image_json_data = urllib.request.urlopen(f"{IMAGE_INFO_URL}{team}").read()
 
+    if len(team_json_data) != 1:
+        return {"error": "Team Not Found"}
+
     team_data = json.loads(team_json_data)["data"][0]
     image_data = json.loads(image_json_data)["data"]
 
-    data = { "team": team_data, "image": image_data }
+    data = { "team": team_data, "image": image_data, "error": False }
 
     return data
