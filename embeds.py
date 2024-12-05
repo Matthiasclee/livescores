@@ -44,7 +44,7 @@ def make_team_embed(data, data_source):
         embed.add_field(
                 name=f"{image['image']}: {image['ccs_score']} points",
                 value=f"Found: {image['found']}/{image['found']+image['remaining']}, \
-                        {image['penalties']} penalties, Total: {image['ccs_score']} **{image['code']} **",
+                        {image['penalties']} penalties, Total: {image['ccs_score']} points\nTime: {image['duration']}{(', Warnings: ' + image['code']) if image['code'] != '' else ''}",
                 inline=False
                 )
     if "score_1" in team_data:
