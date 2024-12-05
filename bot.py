@@ -37,13 +37,22 @@ async def team_command(interaction: discord.Interaction, team_id: str):
         color=0
     )
 
-    embed.add_field(name="Play Time", value=team_data["play_time"])
-    embed.add_field(name="Score Time", value=team_data["score_time"])
+    time_data = f"Play Time: {team_data['play_time']}\n\
+    Score Time: {team_data['score_time']}"
 
-    embed.add_field(name="CCS Score", value=team_data["ccs_score"])
-    embed.add_field(name="Cisco Score", value=team_data["score_1"])
-    embed.add_field(name="Adjust", value=team_data["adjustment"])
-    embed.add_field(name="Total Score", value=f"**{team_data['total']}**")
+    score_data = f"CCS Score: {team_data['ccs_score']}\n"
+
+    if team_data['score_1']:
+        score_data = score_data + f"Cisco Score: {team_data['score_1']}\n"
+
+    score_data = score_data + f"Adjust: {team_data['adjustment']}\n\
+    **Total: {team_data['total']}**"
+
+    embed.add_field(name="Score", value=score_data)
+    embed.add_field(name="Warnings", value=team_data["code"])
+    embed.add_field(name="Time", value=time_data)
+
+    embed.add_field(name=f"**Images ({team_data['images']})**", value="", inline=False)
 
     await interaction.response.send_message(embed=embed, ephemeral=False)
 
