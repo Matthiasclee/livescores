@@ -1,4 +1,5 @@
 import discord
+from datetime import datetime
 
 def make_team_embed(data, data_source):
     team_data = data["team"]
@@ -53,7 +54,7 @@ def make_team_embed(data, data_source):
                 inline=False
                 )
 
-    embed.set_footer(text=f"Data from {data_source}")
+    embed.set_footer(text=f"Data from {data_source} | {datetime.now().strftime('%b %d %Y %I:%M %p')}")
 
     return embed
 
