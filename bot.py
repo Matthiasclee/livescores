@@ -4,6 +4,7 @@ from discord.ext import commands
 
 from settings import *
 from get_data import *
+from embeds import *
 
 intents = discord.Intents.default()
 #intents.message_content = True
@@ -27,32 +28,13 @@ async def on_ready():
     team_id = "Team ID"
 )
 async def team_command(interaction: discord.Interaction, team_id: str):
+
     data = get_data(team_id)
-    team_data = data["team"]
-    image_data = data["image"]
 
-    embed = discord.Embed(
-        title = f"Team {team_data['team_number']}",
-        description = f"Location: {team_data['location']}, Division: {team_data['division']}",
-        color=0
-    )
-
-    time_data = f"Play Time: {team_data['play_time']}\n\
-    Score Time: {team_data['score_time']}"
-
-    score_data = f"CCS Score: {team_data['ccs_score']}\n"
-
-    if team_data['score_1']:
-        score_data = score_data + f"Cisco Score: {team_data['score_1']}\n"
-
-    score_data = score_data + f"Adjust: {team_data['adjustment']}\n\
-    **Total: {team_data['total']}**"
-
-    embed.add_field(name="Score", value=score_data)
-    embed.add_field(name="Warnings", value=team_data["code"])
-    embed.add_field(name="Time", value=time_data)
-
-    embed.add_field(name=f"**Images ({team_data['images']})**", value="", inline=False)
+    if data['error']:
+        embed = make_error_embed("Error fetching data", "Something went wrong while getting the team data.")
+    else:
+        embed = make_team_embed(data)
 
     await interaction.response.send_message(embed=embed, ephemeral=False)
 
