@@ -23,19 +23,37 @@ async def on_ready():
         print(f"Failed to sync commands: {e}")
 
 # Slash command with arguments
-@bot.tree.command(name="team", description="Gets image data for a team")
+@bot.tree.command(name="team", description="Gets live score data for a team")
 @app_commands.describe(
     team_id = "Team ID"
 )
 async def team_command(interaction: discord.Interaction, team_id: str):
     await interaction.response.defer(ephemeral=False, thinking=True)
 
-    data = get_data(team_id)
+    data = get_data(team_id, "live")
 
     if data['error']:
         embed = make_error_embed("Error fetching data", data["error"])
     else:
         embed = make_team_embed(data, "live scoreboard")
+
+    #await interaction.response.send_message(embed=embed, ephemeral=False)
+    await interaction.followup.send(embed=embed, ephemeral=False)
+
+@bot.tree.command(name="historical", description="Gets historical score data for a team")
+@app_commands.describe(
+    team_id = "Team ID",
+    data_source = "Data Source"
+)
+async def team_command(interaction: discord.Interaction, team_id: str, data_source: str):
+    await interaction.response.defer(ephemeral=False, thinking=True)
+
+    data = get_data(team_id, data_source)
+
+    if data['error']:
+        embed = make_error_embed("Error fetching data", data["error"])
+    else:
+        embed = make_team_embed(data, data_source)
 
     #await interaction.response.send_message(embed=embed, ephemeral=False)
     await interaction.followup.send(embed=embed, ephemeral=False)
