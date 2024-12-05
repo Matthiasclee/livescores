@@ -16,7 +16,7 @@ def make_team_embed(data):
     score_data = f"Total: {team_data['total']}\n\
     CCS Score: {team_data['ccs_score']}\n"
 
-    if team_data['score_1']:
+    if "score_1" in team_data:
         score_data = score_data + f"Cisco Score: {team_data['score_1']}\n"
 
     score_data = score_data + f"Adjust: {team_data['adjustment']}"
@@ -37,13 +37,19 @@ def make_team_embed(data):
         embed.add_field(name="Warnings", value="\n".join(warnings_data))
     embed.add_field(name="Time", value=time_data)
 
-    embed.add_field(name=f"__**Images ({team_data['images']})**__", value="", inline=False)
+    embed.add_field(name=f"__Images ({team_data['images']})__", value="", inline=False)
 
     for image in image_data:
         embed.add_field(
                 name=f"{image['image']}: {image['ccs_score']} points",
                 value=f"Found: {image['found']}/{image['found']+image['remaining']}, \
                         {image['penalties']} penalties, Total: {image['ccs_score']} **{image['code']} **",
+                inline=False
+                )
+    if "score_1" in team_data:
+        embed.add_field(
+                name=f"Cisco: {team_data['score_1']} points",
+                value="",
                 inline=False
                 )
 
