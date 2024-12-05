@@ -43,7 +43,7 @@ def make_team_embed(data):
         embed.add_field(
                 name=f"{image['image']}: {image['ccs_score']} points",
                 value=f"Found: {image['found']}/{image['found']+image['remaining']}, \
-                        {image['penalties']} penalties, Total: {image['ccs_score']} **{image['code']}**",
+                        {image['penalties']} penalties, Total: {image['ccs_score']} **{image['code']} **",
                 inline=False
                 )
 
