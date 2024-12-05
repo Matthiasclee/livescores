@@ -1,4 +1,7 @@
 {
+  "valid_data_sources": [
+    "cp17_r2"
+  ],
   "season": "17",
   "discord_secret": "<secret>"
 }

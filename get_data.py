@@ -14,7 +14,7 @@ def get_data(team, data_source):
         team_json_data = urllib.request.urlopen(f"{TEAM_INFO_URL}{team}").read()
         image_json_data = urllib.request.urlopen(f"{IMAGE_INFO_URL}{team}").read()
     else:
-        if not os.path.exists(f"score_archives/{data_source}"):
+        if not os.path.exists(f"score_archives/{data_source}") or not data_source in get_setting("valid_data_sources"):
             return {"error": "Invalid data source"}
 
         team_path = f"score_archives/{data_source}/{team}_team.json"

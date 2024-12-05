@@ -57,6 +57,19 @@ def make_team_embed(data, data_source):
 
     return embed
 
+def make_datasources_embed(datasources):
+    embed = discord.Embed(
+        title = f"Data Sources",
+        description = f"",
+        color=0
+    )
+
+    for s in datasources:
+        embed.add_field(name=s, value="", inline=False)
+
+    return embed
+
+
 def make_error_embed(title, message):
     embed = discord.Embed(
         title = title,

@@ -8,9 +8,8 @@ from embeds import *
 
 intents = discord.Intents.default()
 
-bot = commands.Bot(command_prefix="!", intents=intents)
+bot = commands.Bot(command_prefix="!livescores", intents=intents)
 
-# Bot ready event
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user}")
@@ -20,7 +19,6 @@ async def on_ready():
     except Exception as e:
         print(f"Failed to sync commands: {e}")
 
-# Slash command with arguments
 @bot.tree.command(name="team", description="Gets live score data for a team")
 @app_commands.describe(
     team_id = "Team ID",
@@ -36,8 +34,15 @@ async def team_command(interaction: discord.Interaction, team_id: str, data_sour
     else:
         embed = make_team_embed(data, data_source)
 
-    #await interaction.response.send_message(embed=embed, ephemeral=False)
     await interaction.followup.send(embed=embed, ephemeral=False)
+
+@bot.tree.command(name="datasources", description="Show all data sources")
+async def team_command(interaction: discord.Interaction):
+    datasources = get_setting("valid_data_sources")
+
+    embed = make_datasources_embed(datasources)
+
+    await interaction.response.send_message(embed=embed, ephemeral=True)
 
 def start_bot():
     bot.run(get_setting("discord_secret"))
