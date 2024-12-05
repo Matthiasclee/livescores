@@ -21,7 +21,7 @@ image_data = json.loads(image_json_data)["data"]
 
 for team in team_data:
     file = open(f"{PATH}/{team['team_number']}_team.json", "w")
-    file.write(json.dumps({"data": team}))
+    file.write(json.dumps({"data": [team]}))
     file.close()
 
     # Make a blank image file for the team so the bot doesn't error if the team had to images

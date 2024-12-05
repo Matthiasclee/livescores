@@ -9,7 +9,7 @@ def get_data(team, data_source):
     if len(team) == 4:
         team = f"{get_setting('season')}-{team}"
 
-    if DATA_SOURCE == "live":
+    if data_source == "live scoreboard":
         team_json_data = urllib.request.urlopen(f"{TEAM_INFO_URL}{team}").read()
         image_json_data = urllib.request.urlopen(f"{IMAGE_INFO_URL}{team}").read()
     else:
