@@ -24,7 +24,7 @@ for team in team_data:
     file.write(json.dumps({"data": [team]}))
     file.close()
 
-    # Make a blank image file for the team so the bot doesn't error if the team had to images
+    # Make a blank image file for the team so the bot doesn't error if the team had no images
     file = open(f"{PATH}/{team['team_number']}_image.json", "w")
     file.write(json.dumps({"data": []}))
     file.close()
