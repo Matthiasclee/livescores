@@ -1,1 +1,1 @@
-{"data": {"team_id": 4809, "team_number": "17-5112", "images": 3, "play_time": "08:13:50", "score_time": "07:57:52", "ccs_score": "120", "location": "NY", "division": "Open", "code": "T", "adjustment": "-10.00", "score_1": "14.57", "total": "124.57"}}
+{"data": [{"team_id": 4809, "team_number": "17-5112", "images": 3, "play_time": "08:13:50", "score_time": "07:57:52", "ccs_score": "120", "location": "NY", "division": "Open", "code": "T", "adjustment": "-10.00", "score_1": "14.57", "total": "124.57"}]}

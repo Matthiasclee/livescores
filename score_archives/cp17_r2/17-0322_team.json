@@ -1,1 +1,1 @@
-{"data": {"team_id": 323, "team_number": "17-0322", "images": 3, "play_time": "04:00:50", "score_time": "03:46:50", "ccs_score": "197", "location": "TX", "division": "AFJROTC", "code": "T", "adjustment": "-10.00", "score_1": "11.43", "total": "198.43"}}
+{"data": [{"team_id": 323, "team_number": "17-0322", "images": 3, "play_time": "04:00:50", "score_time": "03:46:50", "ccs_score": "197", "location": "TX", "division": "AFJROTC", "code": "T", "adjustment": "-10.00", "score_1": "11.43", "total": "198.43"}]}

@@ -1,1 +1,1 @@
-{"data": {"team_id": 581, "team_number": "17-0616", "images": 3, "play_time": "04:00:50", "score_time": "03:52:47", "ccs_score": "195", "location": "MD", "division": "CAP", "code": "T", "adjustment": "-10.00", "score_1": "10.71", "total": "195.71"}}
+{"data": [{"team_id": 581, "team_number": "17-0616", "images": 3, "play_time": "04:00:50", "score_time": "03:52:47", "ccs_score": "195", "location": "MD", "division": "CAP", "code": "T", "adjustment": "-10.00", "score_1": "10.71", "total": "195.71"}]}

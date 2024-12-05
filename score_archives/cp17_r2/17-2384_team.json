@@ -1,1 +1,1 @@
-{"data": {"team_id": 2209, "team_number": "17-2384", "images": 3, "play_time": "05:13:50", "score_time": "04:01:51", "ccs_score": "98", "location": "TX", "division": "AJROTC", "code": "T", "adjustment": "-34.00", "score_1": "3.00", "total": "67.00"}}
+{"data": [{"team_id": 2209, "team_number": "17-2384", "images": 3, "play_time": "05:13:50", "score_time": "04:01:51", "ccs_score": "98", "location": "TX", "division": "AJROTC", "code": "T", "adjustment": "-34.00", "score_1": "3.00", "total": "67.00"}]}

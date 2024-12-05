@@ -1,1 +1,1 @@
-{"data": {"team_id": 2001, "team_number": "17-2165", "images": 2, "play_time": "04:00:50", "score_time": "04:00:50", "ccs_score": "132", "location": "AL", "division": "Middle School", "code": "T", "adjustment": "-20.00", "score_1": "9.00", "total": "121.00"}}
+{"data": [{"team_id": 2001, "team_number": "17-2165", "images": 2, "play_time": "04:00:50", "score_time": "04:00:50", "ccs_score": "132", "location": "AL", "division": "Middle School", "code": "T", "adjustment": "-20.00", "score_1": "9.00", "total": "121.00"}]}
