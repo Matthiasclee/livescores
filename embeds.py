@@ -1,6 +1,6 @@
 import discord
 
-def make_team_embed(data):
+def make_team_embed(data, data_source):
     team_data = data["team"]
     image_data = data["image"]
 
@@ -52,6 +52,8 @@ def make_team_embed(data):
                 value="",
                 inline=False
                 )
+
+    embed.set_footer(text=f"Data from {data_source}")
 
     return embed
 

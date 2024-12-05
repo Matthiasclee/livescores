@@ -35,7 +35,7 @@ async def team_command(interaction: discord.Interaction, team_id: str):
     if data['error']:
         embed = make_error_embed("Error fetching data", data["error"])
     else:
-        embed = make_team_embed(data)
+        embed = make_team_embed(data, "live scoreboard")
 
     #await interaction.response.send_message(embed=embed, ephemeral=False)
     await interaction.followup.send(embed=embed, ephemeral=False)
