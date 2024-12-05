@@ -6,6 +6,9 @@ from settings import *
 from get_data import *
 
 intents = discord.Intents.default()
+#intents.message_content = True
+#intents.messages = True
+
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 # Bot ready event
@@ -19,18 +22,29 @@ async def on_ready():
         print(f"Failed to sync commands: {e}")
 
 # Slash command with arguments
-@bot.tree.command(name="greet", description="Greets a user with a custom message.")
+@bot.tree.command(name="team", description="Gets image data for a team")
 @app_commands.describe(
-    name="The name of the person to greet.",
-    age="The age of the person."
+    team_id = "Team ID"
 )
-async def greet_command(interaction: discord.Interaction, name: str, age: int):
+async def team_command(interaction: discord.Interaction, team_id: str):
+    data = get_data(team_id)
+    team_data = data["team"]
+    image_data = data["image"]
+
     embed = discord.Embed(
-        title="Greeting!",
-        description=f"Hello, **{name}**! 🎉 You are **{age}** years old!",
-        color=discord.Color.green(),
+        title = f"Team {team_data['team_number']}",
+        description = f"Location: {team_data['location']}, Division: {team_data['division']}",
+        color=0
     )
-    embed.set_footer(text="Thanks for using the bot!")
+
+    embed.add_field(name="Play Time", value=team_data["play_time"])
+    embed.add_field(name="Score Time", value=team_data["score_time"])
+
+    embed.add_field(name="CCS Score", value=team_data["ccs_score"])
+    embed.add_field(name="Cisco Score", value=team_data["score_1"])
+    embed.add_field(name="Adjust", value=team_data["adjustment"])
+    embed.add_field(name="Total Score", value=f"**{team_data['total']}**")
+
     await interaction.response.send_message(embed=embed, ephemeral=False)
 
 def start_bot():
