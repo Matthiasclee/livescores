@@ -7,6 +7,7 @@ LiveScores can also provide archived historical data.
 * `/datasources`: Lists all valid historical data source
 
 ## Running the bot
+To run the bot, run `python3 main.py`
 ### Requirements
 * `discord` python library (`pip3 install discord`)
 * A discord bot token
