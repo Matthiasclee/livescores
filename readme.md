@@ -1,4 +1,6 @@
 # LiveScores
+LiveScores is a discord bot that provides live data from the [CyberPatriot Scoreboard](https://scoreboard.uscyberpatriot.org).
+LiveScores can also provide archived historical data.
 
 ## Using the bot
 * `/team <team id> [data source]`: Get score data for `<team id>` from `[data source]`. If no data source is specified, data is gotten live from the scoreboard
