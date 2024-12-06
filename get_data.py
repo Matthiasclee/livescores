@@ -19,10 +19,15 @@ def get_data(team, data_source):
 
     # Get live data if the data source is "live scoreboard"
     if data_source == "live scoreboard":
-        # Get team info from the team info API
-        team_json_data = urllib.request.urlopen(f"{TEAM_INFO_URL}{team}").read()
-        # Get image info from the image info API
-        image_json_data = urllib.request.urlopen(f"{IMAGE_INFO_URL}{team}").read()
+        # Try to get live data from the API
+        try:
+            # Get team info from the team info API
+            team_json_data = urllib.request.urlopen(f"{TEAM_INFO_URL}{team}").read()
+            # Get image info from the image info API
+            image_json_data = urllib.request.urlopen(f"{IMAGE_INFO_URL}{team}").read()
+        except:
+            # Gracefully return an error if an exception occurs getting the data
+            return {"error": "Something went wrong getting data from the scoreboard"}
     # Get historical data
     else:
         # Check if the data source exists and is valid according to the "valid_data_sources" setting
