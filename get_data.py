@@ -28,6 +28,8 @@ def get_data(team, data_source):
         except:
             # Gracefully return an error if an exception occurs getting the data
             return {"error": "Something went wrong getting data from the scoreboard"}
+
+        # Return an error if the data is blank
         if team_json_data == "" or image_json_data == "":
             return {"error": "Scoreboard is not live at this time"}
     # Get historical data
