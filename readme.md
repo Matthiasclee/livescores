@@ -18,7 +18,7 @@ To run the bot, run `python3 main.py`
 ### Settings
 To run the bot, copy `settings_template.json` to `settings.json`. Put your discord bot token in the `"discord_secret"` field. The following settings are available:
 * `"valid_data_sources"`: Array of acceptable data sources
-* `"season"`: Default season if user doesn't specify it in the team ID (`1369` becomes `17-1369`)
+* `"season"`: Default season if user doesn't specify it in the team ID (`1984` becomes `17-1984`)
 * `"discord_secret"`: Discord bot token
 ### Archiving historical data
 To archive historical data, run `python3 download_data.py <name>` where `<name>` is the name of the datasource.
