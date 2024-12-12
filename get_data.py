@@ -30,7 +30,7 @@ def get_data(team, data_source):
             return {"error": "Something went wrong getting data from the scoreboard"}
 
         # Return an error if the data is blank
-        if team_json_data == "" or image_json_data == "":
+        if len(team_json_data + image_json_data) < 4:
             return {"error": "Scoreboard is not live at this time"}
     # Get historical data
     else:
