@@ -30,8 +30,9 @@ def make_team_embed(data, data_source):
     if "score_1" in team_data:
         score_data = score_data + f"Cisco Score: {team_data['score_1']}\n"
 
-    # Add the team's adjustment to score_data
-    score_data = score_data + f"Adjust: {team_data['adjustment']}"
+    # Add the team's adjustment to score_data if the team has an adjust
+    if "adjustment" in team_data:
+        score_data = score_data + f"Adjust: {team_data['adjustment']}"
 
     # Create a list for the team's warnings
     warnings_data = []
