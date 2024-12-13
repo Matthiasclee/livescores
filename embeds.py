@@ -11,8 +11,11 @@ def make_team_embed(data, data_source):
     team_data = data["team"]
     image_data = data["image"]
 
+    # If the total scores aren't out yet
     if "total" not in team_data:
         total_score = 0
+        
+        # Manually add up the CCS, Cisco, and Challenges scores
         if "ccs_score" in team_data:
             total_score += int(team_data["ccs_score"])
         if "score_1" in team_data:
@@ -20,6 +23,7 @@ def make_team_embed(data, data_source):
         if "score_2" in team_data:
             total_score += int(team_data["score_2"])
 
+        # Set the total to the calculated score
         team_data["total"] = str(total_score)
 
     # Create an embed where the title is the team number and the description is the location and division of the team, and the color is black (#000000)
@@ -41,9 +45,15 @@ def make_team_embed(data, data_source):
     if "score_1" in team_data:
         score_data = score_data + f"Cisco Score: {team_data['score_1']}\n"
 
+    # Add the challenges score to score_data if the team has a challenges score
+    if "score_2" in team_data:
+        score_data = score_data + f"Challenges Score: {team_data['score_2']}\n"
+
     # Add the team's adjustment to score_data if the team has an adjust
     if "adjustment" in team_data:
         score_data = score_data + f"Adjust: {team_data['adjustment']}"
+    else:
+        score_data = score_data + "Adjust: 0.00"
 
     # Create a list for the team's warnings
     warnings_data = []
