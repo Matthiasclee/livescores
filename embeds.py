@@ -27,9 +27,15 @@ def make_team_embed(data, data_source):
         team_data["total"] = str(total_score)
 
     # Create an embed where the title is the team number and the description is the location and division of the team, and the color is black (#000000)
+
+    # Add a line for the team's tier if the team has a tier
+    tier_text = ""
+    if "tier" in team_data:
+        tier_text = f", Tier: {team_data['tier']}"
+
     embed = discord.Embed(
         title = f"Team {team_data['team_number']}",
-        description = f"Location: {team_data['location']}, Division: {team_data['division']}",
+        description = f"Location: {team_data['location']}, Division: {team_data['division']}{tier_text}",
         color=0
     )
 
