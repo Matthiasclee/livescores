@@ -11,6 +11,17 @@ def make_team_embed(data, data_source):
     team_data = data["team"]
     image_data = data["image"]
 
+    if "total" not in team_data:
+        total_score = 0
+        if "ccs_score" in team_data:
+            total_score += int(team_data["ccs_score"])
+        if "score_1" in team_data:
+            total_score += int(team_data["score_1"])
+        if "score_2" in team_data:
+            total_score += int(team_data["score_2"])
+
+        team_data["total"] = str(total_score)
+
     # Create an embed where the title is the team number and the description is the location and division of the team, and the color is black (#000000)
     embed = discord.Embed(
         title = f"Team {team_data['team_number']}",
