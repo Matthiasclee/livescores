@@ -16,7 +16,7 @@ bot = commands.Bot(command_prefix="!livescores", intents=intents)
 @bot.event
 async def on_ready():
     # Print the user the bot is logged in as
-    print(f"Logged in as {bot.user}")
+    print(f"Logged in as {bot.user}, bot is in {len(bot.guilds)} guilds.")
 
     # Try to sync the bot's commands with discord
     try:
