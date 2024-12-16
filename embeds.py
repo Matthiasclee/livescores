@@ -72,12 +72,12 @@ def make_team_embed(data, data_source):
         # Add a multiple instances warning if the warning is 'M'
         elif warning == "M":
             warnings_data.append("* Multiple Instances")
+        # If the warning is a 'W', add a score withdrawn warning
+        elif warning == "W":
+            warnings_data.append("* Score Withdrawn")
         # If the warning is something else, just add the letter to the warnings data
         else:
             warnings_data.append(f"* `{warning}`")
-        # Commented out code to add a cheating warning if there is a 'W'. This is commented because I don't know if the 'W' is actually a cheating warning.
-        #elif warning == "W":
-        #    warnings_data.append("* Cheaing warning")
 
     # Add a score field to the embed containing the score data string from earlier 
     embed.add_field(name="Score", value=score_data)
