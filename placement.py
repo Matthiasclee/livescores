@@ -14,7 +14,6 @@ def determine_team_placement(team_info, all_team_data, scopes):
         if "total" in team and team["total"] == "":
             score = 0.00
         elif "total" in team:
-            print(team["team_number"])
             score = float(team["total"])
         else:
             score = int(team["ccs_score"])
