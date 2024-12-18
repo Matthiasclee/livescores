@@ -21,6 +21,25 @@ IMAGE_INFO_URL = "https://scoreboard.uscyberpatriot.org/api/image/scores.php?tea
 team_json_data = urllib.request.urlopen(TEAM_INFO_URL).read()
 image_json_data = urllib.request.urlopen(IMAGE_INFO_URL).read()
 
+# Write the entire teams and images JSON data to a file for calculating placement
+# Open the file
+file = open(f"{PATH}/teams_all.json", "wb")
+
+# Write the data
+file.write(team_json_data)
+
+# Close the file
+file.close()
+
+# Open the file
+file = open(f"{PATH}/images_all.json", "wb")
+
+# Write the data
+file.write(image_json_data)
+
+# Close the file
+file.close()
+
 # Define an empty dictionary to store the team image information in
 teams_image_info = {}
 
