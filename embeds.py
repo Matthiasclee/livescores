@@ -101,7 +101,7 @@ Division: {state_division[0]}/{state_division[1]}, {state_division[2]}%"
     embed.add_field(name = "National", value = overall_placement_text)
     embed.add_field(name = "State", value = state_placement_text)
 
-    embed.add_field(name=f"__Images__", value="", inline=False)
+    embed.add_field(name=f"__Images ({team_data['images']})__", value="", inline=False)
 
     for image in image_data:
         embed.add_field(
@@ -110,6 +110,9 @@ Division: {state_division[0]}/{state_division[1]}, {state_division[2]}%"
 {image['penalties']} penalties, Total: {image['ccs_score']} points\nTime: {image['duration']}{(', Warnings: ' + image['code']) if image['code'] != '' else ''}",
                 inline=False
                 )
+
+    if "score_1"  in team_data or "score_2" in team_data:
+        embed.add_field(name = "__Other__", value = "", inline = False)
     
     if "score_1" in team_data:
         embed.add_field(
