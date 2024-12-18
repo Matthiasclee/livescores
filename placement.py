@@ -30,5 +30,7 @@ def determine_team_placement(team_info, all_team_data, scopes):
             place = i+1
             length = len(team_data)
             percentile = int(((length - place) / length) * 100)
+
+            percentile = int( ( (length - (place-1)) / length ) * 100)
             return (place, length, percentile)
     return (0, len(team_data), 0)
