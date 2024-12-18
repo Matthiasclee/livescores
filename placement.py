@@ -3,13 +3,13 @@ def determine_team_placement(team_info, all_team_data, scopes):
     team_data = []
     for team in all_team_data["data"]:
         if "division" in scopes and team["division"] != team_info["division"]:
-            next
+            continue
 
         if "state" in scopes and team["location"] != team_info["location"]:
-            next
+            continue
 
         if "tier" in scopes and "tier" in team and "tier" in team_info and team["tier"] != team_info["tier"]:
-            next
+            continue
 
         if "total" in team and team["total"] == "":
             score = 0.00
