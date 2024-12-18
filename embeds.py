@@ -1,9 +1,11 @@
 import discord
 from datetime import datetime
+from placement import *
 
 def make_team_embed(data, data_source):
     team_data = data["team"]
     image_data = data["image"]
+    all_team_data = data["all_team_data"]
 
     if "total" not in team_data:
         total_score = 0
@@ -63,6 +65,32 @@ def make_team_embed(data, data_source):
         embed.add_field(name="Warnings", value="\n".join(warnings_data))
 
     embed.add_field(name="Time", value=time_data)
+
+    overall_placement = determine_team_placement(team_data, all_team_data, [])
+    overall_division = determine_team_placement(team_data, all_team_data, ["division"])
+    overall_tier = determine_team_placement(team_data, all_team_data, ["tier"])
+    overall_division_tier = determine_team_placement(team_data, all_team_data, ["division", "tier"])
+
+    overall_placement_text = f"Overall: {overall_placement[0]}/{overall_placement[1]}, {overall_placement[2]}%\n\
+            Division: {overall_division[0]}/{overall_division[1]}, {overall_division[2]}%\n\
+            Tier: {overall_tier[0]}/{overall_tier[1]}, {overall_tier[2]}%\n\
+            Div, Tier: {overall_division_tier[0]}/{overall_division_tier[1]}, {overall_division_tier[2]}%\n\
+            "
+
+    state_placement = determine_team_placement(team_data, all_team_data, ["state"])
+    state_division = determine_team_placement(team_data, all_team_data, ["division", "state"])
+    state_tier = determine_team_placement(team_data, all_team_data, ["tier", "state"])
+    state_division_tier = determine_team_placement(team_data, all_team_data, ["division", "tier", "state"])
+
+    state_placement_text = f"Overall: {state_placement[0]}/{state_placement[1]}, {state_placement[2]}%\n\
+            Division: {state_division[0]}/{state_division[1]}, {state_division[2]}%\n\
+            Tier: {state_tier[0]}/{state_tier[1]}, {state_tier[2]}%\n\
+            Div, Tier: {state_division_tier[0]}/{state_division_tier[1]}, {state_division_tier[2]}%\n\
+            "
+
+    embed.add_field(name="__Placement__", value="", inline=False)
+    embed.add_field(name = "National", value = overall_placement_text)
+    embed.add_field(name = "State", value = state_placement_text)
 
     embed.add_field(name=f"__Images ({team_data['images']})__", value="", inline=False)
 

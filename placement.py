@@ -1,5 +1,5 @@
 def determine_team_placement(team_info, all_team_data, scopes):
-    team_info = team_info["data"][0]
+    #team_info = team_info["data"][0]
     team_data = []
     for team in all_team_data["data"]:
         if "division" in scopes and team["division"] != team_info["division"]:
@@ -27,5 +27,8 @@ def determine_team_placement(team_info, all_team_data, scopes):
 
     for i, score_data in enumerate(team_data):
         if score_data[1] == team_info["team_number"]:
-            return (i+1)
-    return 0
+            place = i+1
+            length = len(team_data)
+            percentile = int(((length - place) / length) * 100)
+            return (place, length, percentile)
+    return (0, len(team_data), 0)
