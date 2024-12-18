@@ -101,7 +101,7 @@ Division: {state_division[0]}/{state_division[1]}, {state_division[2]}%"
     embed.add_field(name = "National", value = overall_placement_text)
     embed.add_field(name = "State", value = state_placement_text)
 
-    embed.add_field(name=f"__Images ({team_data['images']})__", value="", inline=False)
+    embed.add_field(name=f"__Images__", value="", inline=False)
 
     for image in image_data:
         embed.add_field(
@@ -114,6 +114,13 @@ Division: {state_division[0]}/{state_division[1]}, {state_division[2]}%"
     if "score_1" in team_data:
         embed.add_field(
                 name=f"Cisco: {team_data['score_1']} points",
+                value="",
+                inline=False
+                )
+
+    if "score_2" in team_data:
+        embed.add_field(
+                name=f"Challenges: {team_data['score_2']} points",
                 value="",
                 inline=False
                 )
