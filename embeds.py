@@ -30,6 +30,9 @@ def make_team_embed(data, data_source):
         color=0
     )
 
+    if data_source == "live scoreboard":
+        embed.url = f"https://scoreboard.uscyberpatriot.org/team.php?team={team_data['team_number']}"
+
     time_data = f"Play Time: {team_data['play_time']}\n\
 Score Time: {team_data['score_time']}"
 
