@@ -20,7 +20,7 @@ def get_leaderboard(all_team_data, division, location, tier):
         time = team["play_time"]
         team_id = team["team_number"]
 
-        team_data.append((f"{score_inverse}-{time}", team_id))
+        team_data.append((f"{score_inverse}-{time}", team_id, team))
 
     team_data.sort()
     

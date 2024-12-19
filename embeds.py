@@ -161,13 +161,21 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
     leaderboard_data_text = ""
 
     for i, team in enumerate(leaderboard_data):
-        info, team_id = team
+        info, team_id, team_all_data = team
         score_inv, time = info.split("-")
         score = 2000 - float(score_inv)
         score = str(round(score, 2))
-        leaderboard_data_text = leaderboard_data_text + f"{i + 1 + start}. {team_id}: {score}, {time}\n"
 
-    embed.add_field(name="Leaderboard", value=leaderboard_data_text, inline=False)
+        team_location = team_all_data["location"]
+        team_division = team_all_data["division"]
+
+        if "tier" in team_all_data:
+            tier_text = f" {team_all_data['tier']}"
+        else:
+            tier_text = ""
+        leaderboard_data_text = leaderboard_data_text + f"{i + 1 + start}. **{team_id}** ({team_location}{tier_text} {team_division}): {score}, {time}\n"
+
+    embed.add_field(name=f"Page {page}, {per_page} teams per page", value=leaderboard_data_text, inline=False)
 
     embed.set_footer(text=f"Data from {data_source} | {datetime.now().strftime('%b %d %Y %I:%M %p')}")
 

@@ -50,7 +50,7 @@ async def team_command(interaction: discord.Interaction, team_id: str, data_sour
     data_source = "Data Source"
 )
 
-async def leaderboard_command(interaction: discord.Interaction, page: int = 1, division: str = "all", location: str = "all", tier: str = "all", per_page: int = 10, data_source: str = "live scoreboard"):
+async def leaderboard_command(interaction: discord.Interaction, page: int = 1, division: str = "all", location: str = "all", tier: str = "all", per_page: int = 15, data_source: str = "live scoreboard"):
     await interaction.response.defer(ephemeral=False, thinking=True)
 
     data = get_all_team_data(data_source)
