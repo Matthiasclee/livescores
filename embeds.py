@@ -1,4 +1,5 @@
 import discord
+import math
 from datetime import datetime
 from placement import *
 from leaderboard import *
@@ -156,7 +157,8 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
     start = per_page * (page - 1)
     end = start + per_page
 
-    leaderboard_data = get_leaderboard(data["all_team_data"], division, location, tier)[start:end]
+    all_leaderboard_data = get_leaderboard(data["all_team_data"], division, location, tier)
+    leaderboard_data = all_leaderboard_data[start:end]
 
     leaderboard_data_text = ""
 
@@ -174,9 +176,9 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
             tier_text = f" {team_all_data['tier']}"
         else:
             tier_text = ""
-        leaderboard_data_text = leaderboard_data_text + f"{i + 1 + start}. **{team_id}** ({team_location}{tier_text} {team_division}): {score}, {time} **{team_warnings}**\n"
+        leaderboard_data_text = leaderboard_data_text + f"{i + 1 + start}. **{team_id}** ({team_location}{tier_text} {team_division}): {score}, {time} **{team_warnings} **\n"
 
-    embed.add_field(name=f"Page {page}, {per_page} teams per page", value=leaderboard_data_text, inline=False)
+    embed.add_field(name=f"Page {page} of {math.ceil(len(all_leaderboard_data)/per_page)}, {per_page} teams per page", value=leaderboard_data_text, inline=False)
 
     embed.set_footer(text=f"Data from {data_source} | {datetime.now().strftime('%b %d %Y %I:%M %p')}")
 
