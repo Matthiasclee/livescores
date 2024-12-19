@@ -168,12 +168,13 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
 
         team_location = team_all_data["location"]
         team_division = team_all_data["division"]
+        team_warnings = team_all_data["code"]
 
         if "tier" in team_all_data and team_all_data["tier"] != "Middle School":
             tier_text = f" {team_all_data['tier']}"
         else:
             tier_text = ""
-        leaderboard_data_text = leaderboard_data_text + f"{i + 1 + start}. **{team_id}** ({team_location}{tier_text} {team_division}): {score}, {time}\n"
+        leaderboard_data_text = leaderboard_data_text + f"{i + 1 + start}. **{team_id}** ({team_location}{tier_text} {team_division}): {score}, {time} **{team_warnings}**\n"
 
     embed.add_field(name=f"Page {page}, {per_page} teams per page", value=leaderboard_data_text, inline=False)
 
