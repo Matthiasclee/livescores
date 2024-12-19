@@ -20,7 +20,7 @@ async def on_ready():
     except Exception as e:
         print(f"Failed to sync commands: {e}")
 
-@bot.tree.command(name="team", description="Gets live score data for a team")
+@bot.tree.command(name="team", description="Gets score data for a team")
 
 @app_commands.describe(
     team_id = "Team ID",
@@ -28,6 +28,27 @@ async def on_ready():
 )
 
 async def team_command(interaction: discord.Interaction, team_id: str, data_source: str = "live scoreboard"):
+    await interaction.response.defer(ephemeral=False, thinking=True)
+
+    data = get_data(team_id, data_source)
+
+    if data['error']:
+        embed = make_error_embed("Error fetching data", data["error"])
+    else:
+        embed = make_team_embed(data, data_source)
+
+    await interaction.followup.send(embed=embed, ephemeral=False)
+
+@bot.tree.command(name="leaderboard", description="Gets leaderboard data")
+
+@app_commands.describe(
+    page = "Scoreboard page",
+    division = "Division",
+    location = "Location",
+    tier = "Tier"
+)
+
+async def leaderboard_command(interaction: discord.Interaction, page: int = 1, division: str = "all", location: str = "all", tier: str = "all"):
     await interaction.response.defer(ephemeral=False, thinking=True)
 
     data = get_data(team_id, data_source)
