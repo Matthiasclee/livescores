@@ -50,6 +50,12 @@ def get_data(team, data_source):
     if len(team_data) != 1:
         return {"error": "Team not found"}
 
+    if "location" not in team_data[0]:
+        team_data[0]["location"] = "N/A"
+
+    if "division" not in team_data[0]:
+        team_data[0]["division"] = "N/A"
+
     data = { "team": team_data[0], "image": image_data, "all_team_data": all_team_data, "error": False }
 
     return data
