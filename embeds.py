@@ -7,6 +7,12 @@ def make_team_embed(data, data_source):
     image_data = data["image"]
     all_team_data = data["all_team_data"]
 
+    if "score_1" in team_data and "score_2" in team_data:
+        score_1_name = "Quiz"
+        score_2_name = "Packet Tracer"
+    elif "score_1" in team_data:
+        score_1_name = "Cisco"
+
     if "total" not in team_data:
         total_score = 0
         
@@ -40,10 +46,10 @@ Score Time: {team_data['score_time']}"
 CCS Score: {team_data['ccs_score']}\n"
 
     if "score_1" in team_data:
-        score_data = score_data + f"Cisco Score: {team_data['score_1']}\n"
+        score_data = score_data + f"{score_1_name}: {team_data['score_1']}\n"
 
     if "score_2" in team_data:
-        score_data = score_data + f"Challenges Score: {team_data['score_2']}\n"
+        score_data = score_data + f"{score_2_name}: {team_data['score_2']}\n"
 
     if "adjustment" in team_data:
         score_data = score_data + f"Adjust: {team_data['adjustment']}"
@@ -116,14 +122,14 @@ Division: {state_division[0]}/{state_division[1]}, {state_division[2]}%"
     
     if "score_1" in team_data:
         embed.add_field(
-                name=f"Cisco: {team_data['score_1']} points",
+                name=f"{score_1_name}: {team_data['score_1']} points",
                 value="",
                 inline=False
                 )
 
     if "score_2" in team_data:
         embed.add_field(
-                name=f"Challenges: {team_data['score_2']} points",
+                name=f"{score_2_name}: {team_data['score_2']} points",
                 value="",
                 inline=False
                 )
