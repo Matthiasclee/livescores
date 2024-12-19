@@ -1,28 +1,22 @@
+from leaderboard import *
+
 def determine_team_placement(team_info, all_team_data, scopes):
-    team_data = []
-    for team in all_team_data["data"]:
-        if "division" in scopes and team["division"] != team_info["division"]:
-            continue
+    if "division" in scopes:
+        division = team_info["division"]
+    else:
+        division = False
 
-        if "state" in scopes and team["location"] != team_info["location"]:
-            continue
+    if "state" in scopes:
+        location = team_info["location"]
+    else:
+        location = False
 
-        if "tier" in scopes and "tier" in team and "tier" in team_info and team["tier"] != team_info["tier"]:
-            continue
+    if "tier" in scopes and "tier" in team_info:
+        tier = team_info["tier"]
+    else:
+        tier = False
 
-        if "total" in team and team["total"] == "":
-            score = 0.00
-        elif "total" in team:
-            score = float(team["total"])
-        else:
-            score = int(team["ccs_score"])
-        score_inverse = 2000 - score
-        time = team["play_time"]
-        team_id = team["team_number"]
-
-        team_data.append((f"{score_inverse}-{time}", team_id))
-
-    team_data.sort()
+    team_data = get_leaderboard(all_team_data, division, location, tier)
 
     for i, score_data in enumerate(team_data):
         if score_data[1] == team_info["team_number"]:
