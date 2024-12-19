@@ -169,7 +169,7 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
         team_location = team_all_data["location"]
         team_division = team_all_data["division"]
 
-        if "tier" in team_all_data:
+        if "tier" in team_all_data and team_all_data["tier"] != "Middle School":
             tier_text = f" {team_all_data['tier']}"
         else:
             tier_text = ""
