@@ -139,7 +139,7 @@ Division: {state_division[0]}/{state_division[1]}, {state_division[2]}%"
 
     return embed
 
-def make_leaderboard_embed(data, data_source, division, location, tier):
+def make_leaderboard_embed(data, data_source, division, location, tier, page, per_page):
     embed = discord.Embed(
         title = f"Leaderboard",
         description = f"Division: {division.title()}, Location: {location.upper()}, Tier: {tier.title()}",
@@ -153,7 +153,10 @@ def make_leaderboard_embed(data, data_source, division, location, tier):
     if tier.lower() == "all":
         tier = False
 
-    leaderboard_data = get_leaderboard(data["all_team_data"], division, location, tier)[0:10]
+    start = per_page * (page - 1)
+    end = start + per_page
+
+    leaderboard_data = get_leaderboard(data["all_team_data"], division, location, tier)[start:end]
 
     leaderboard_data_text = ""
 
@@ -162,7 +165,7 @@ def make_leaderboard_embed(data, data_source, division, location, tier):
         score_inv, time = info.split("-")
         score = 2000 - float(score_inv)
         score = str(round(score, 2))
-        leaderboard_data_text = leaderboard_data_text + f"{i + 1}. {team_id}: {score}, {time}\n"
+        leaderboard_data_text = leaderboard_data_text + f"{i + 1 + start}. {team_id}: {score}, {time}\n"
 
     embed.add_field(name="Leaderboard", value=leaderboard_data_text, inline=False)
 
