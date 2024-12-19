@@ -1,6 +1,7 @@
 import discord
 from datetime import datetime
 from placement import *
+from leaderboard import *
 
 def make_team_embed(data, data_source):
     team_data = data["team"]
@@ -133,6 +134,37 @@ Division: {state_division[0]}/{state_division[1]}, {state_division[2]}%"
                 value="",
                 inline=False
                 )
+
+    embed.set_footer(text=f"Data from {data_source} | {datetime.now().strftime('%b %d %Y %I:%M %p')}")
+
+    return embed
+
+def make_leaderboard_embed(data, data_source, division, location, tier):
+    embed = discord.Embed(
+        title = f"Leaderboard",
+        description = f"Division: {division.title()}, Location: {location.upper()}, Tier: {tier.title()}",
+        color=0
+    )
+
+    if division.lower() == "all":
+        division = False
+    if location.lower() == "all":
+        location = False
+    if tier.lower() == "all":
+        tier = False
+
+    leaderboard_data = get_leaderboard(data["all_team_data"], division, location, tier)[0:10]
+
+    leaderboard_data_text = ""
+
+    for i, team in enumerate(leaderboard_data):
+        info, team_id = team
+        score_inv, time = info.split("-")
+        score = 2000 - float(score_inv)
+        score = str(round(score, 2))
+        leaderboard_data_text = leaderboard_data_text + f"{i + 1}. {team_id}: {score}, {time}\n"
+
+    embed.add_field(name="Leaderboard", value=leaderboard_data_text, inline=False)
 
     embed.set_footer(text=f"Data from {data_source} | {datetime.now().strftime('%b %d %Y %I:%M %p')}")
 

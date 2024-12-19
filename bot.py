@@ -45,18 +45,19 @@ async def team_command(interaction: discord.Interaction, team_id: str, data_sour
     page = "Scoreboard page",
     division = "Division",
     location = "Location",
-    tier = "Tier"
+    tier = "Tier",
+    data_source = "Data Source"
 )
 
-async def leaderboard_command(interaction: discord.Interaction, page: int = 1, division: str = "all", location: str = "all", tier: str = "all"):
+async def leaderboard_command(interaction: discord.Interaction, page: int = 1, division: str = "all", location: str = "all", tier: str = "all", data_source: str = "live scoreboard"):
     await interaction.response.defer(ephemeral=False, thinking=True)
 
-    data = get_data(team_id, data_source)
+    data = get_all_team_data(data_source)
 
     if data['error']:
         embed = make_error_embed("Error fetching data", data["error"])
     else:
-        embed = make_team_embed(data, data_source)
+        embed = make_leaderboard_embed(data, data_source, division, location, tier)
 
     await interaction.followup.send(embed=embed, ephemeral=False)
 

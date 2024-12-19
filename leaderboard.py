@@ -1,13 +1,13 @@
 def get_leaderboard(all_team_data, division, location, tier):
     team_data = []
     for team in all_team_data["data"]:
-        if division != False and team["division"] != division:
+        if division != False and team["division"].lower() != division.lower():
             continue
 
-        if location != False and team["location"] != location:
+        if location != False and team["location"].lower() != location.lower():
             continue
 
-        if tier != False and "tier" in team and team["tier"] != tier:
+        if tier != False and "tier" in team and team["tier"].lower() != tier.lower():
             continue
 
         if "total" in team and team["total"] == "":
