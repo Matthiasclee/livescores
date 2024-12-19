@@ -1,5 +1,4 @@
 def determine_team_placement(team_info, all_team_data, scopes):
-    #team_info = team_info["data"][0]
     team_data = []
     for team in all_team_data["data"]:
         if "division" in scopes and team["division"] != team_info["division"]:
