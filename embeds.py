@@ -140,7 +140,9 @@ Division: {state_division[0]}/{state_division[1]}, {state_division[2]}%"
 
     return embed
 
-def make_leaderboard_embed(data, data_source, division, location, tier, page, per_page):
+def make_leaderboard_embed(data, data_source, division, location, tier, page, per_page, highlight_teams):
+    highlight_teams = highlight_teams.split(" ")
+
     embed = discord.Embed(
         title = f"Leaderboard",
         description = f"Division: {division.title()}, Location: {location.upper()}, Tier: {tier.title()}",
@@ -187,7 +189,17 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
                 tier_text = f" {team_all_data['tier']}"
             else:
                 tier_text = ""
-            leaderboard_data_text = leaderboard_data_text + f"{i + 1 + start + (j * 15)}. **{team_id}** ({team_location}{tier_text} {team_division}): {score}, {time} **{team_warnings} **\n"
+
+            if team_id in highlight_teams or team_id[3:7] in highlight_teams:
+                t_id_mod_b = "__**"
+                t_id_mod_e = ""
+                ht_mod_e = "**__"
+            else:
+                t_id_mod_b = "**"
+                t_id_mod_e = "**"
+                ht_mod_e = ""
+
+            leaderboard_data_text = leaderboard_data_text + f"{i + 1 + start + (j * 15)}. {t_id_mod_b}{team_id}{t_id_mod_e} ({team_location}{tier_text} {team_division}): {score}, {time}{ht_mod_e} **{team_warnings} **\n"
 
         embed.add_field(name=(initial_title if j == 0 else ""), value=leaderboard_data_text, inline=False)
 
