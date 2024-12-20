@@ -8,7 +8,7 @@ Invite: [https://discord.com/oauth2/authorize?client_id=1313965570068185118](htt
 
 ## Using the bot
 * `/team <team id> [data source]`: Get score data for `<team id>` from `[data source]`. If no data source is specified, data is gotten live from the scoreboard
-* `/leaderboard [page] [division] [location] [tier] [teams per page] [data source]`: Gets leaderboard data with the options specified
+* `/leaderboard [page] [division] [location] [tier] [teams per page] [teams to highlight] [data source]`: Gets leaderboard data with the options specified
 * `/datasources`: Lists all valid historical data sources
 
 ## Running the bot
