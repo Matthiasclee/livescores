@@ -160,25 +160,36 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
     all_leaderboard_data = get_leaderboard(data["all_team_data"], division, location, tier)
     leaderboard_data = all_leaderboard_data[start:end]
 
-    leaderboard_data_text = ""
-
+    leaderboard_data_chunks = [[]]
+    x = 0
     for i, team in enumerate(leaderboard_data):
-        info, team_id, team_all_data = team
-        score_inv, time = info.split("-")
-        score = 2000 - float(score_inv)
-        score = str(round(score, 2))
+        leaderboard_data_chunks[x].append(team)
+        if (i+1) % 15 == 0:
+            x += 1
+            leaderboard_data_chunks.append([])
 
-        team_location = team_all_data["location"]
-        team_division = team_all_data["division"]
-        team_warnings = team_all_data["code"]
+    initial_title = f"Page {page} of {math.ceil(len(all_leaderboard_data)/per_page)}, {per_page} teams per page"
 
-        if "tier" in team_all_data and team_all_data["tier"] != "Middle School":
-            tier_text = f" {team_all_data['tier']}"
-        else:
-            tier_text = ""
-        leaderboard_data_text = leaderboard_data_text + f"{i + 1 + start}. **{team_id}** ({team_location}{tier_text} {team_division}): {score}, {time} **{team_warnings} **\n"
+    for j, leaderboard_data_chunk in enumerate(leaderboard_data_chunks):
+        leaderboard_data_text = ""
 
-    embed.add_field(name=f"Page {page} of {math.ceil(len(all_leaderboard_data)/per_page)}, {per_page} teams per page", value=leaderboard_data_text, inline=False)
+        for i, team in enumerate(leaderboard_data_chunk):
+            info, team_id, team_all_data = team
+            score_inv, time = info.split("-")
+            score = 2000 - float(score_inv)
+            score = str(round(score, 2))
+
+            team_location = team_all_data["location"]
+            team_division = team_all_data["division"]
+            team_warnings = team_all_data["code"]
+
+            if "tier" in team_all_data and team_all_data["tier"] != "Middle School":
+                tier_text = f" {team_all_data['tier']}"
+            else:
+                tier_text = ""
+            leaderboard_data_text = leaderboard_data_text + f"{i + 1 + start + (j * 15)}. **{team_id}** ({team_location}{tier_text} {team_division}): {score}, {time} **{team_warnings} **\n"
+
+        embed.add_field(name=(initial_title if j == 0 else ""), value=leaderboard_data_text, inline=False)
 
     embed.set_footer(text=f"Data from {data_source} | {datetime.now().strftime('%b %d %Y %I:%M %p')}")
 
