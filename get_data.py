@@ -9,7 +9,7 @@ IMAGE_INFO_URL = "https://scoreboard.uscyberpatriot.org/api/image/scores.php?tea
 def get_all_team_data(data_source):
     if data_source == "live scoreboard":
         try:
-            all_team_json_data = urllib.request.urlopen(f"{TEAM_INFO_URL}", timeout=3).read()
+            all_team_json_data = urllib.request.urlopen(f"{TEAM_INFO_URL}", timeout=5).read()
         except:
             return {"error": "Something went wrong getting data from the scoreboard"}
 
@@ -35,8 +35,8 @@ def get_data(team, data_source):
 
     if data_source == "live scoreboard":
         try:
-            team_json_data = urllib.request.urlopen(f"{TEAM_INFO_URL}{team}", timeout=3).read()
-            image_json_data = urllib.request.urlopen(f"{IMAGE_INFO_URL}{team}", timeout=3).read()
+            team_json_data = urllib.request.urlopen(f"{TEAM_INFO_URL}{team}", timeout=5).read()
+            image_json_data = urllib.request.urlopen(f"{IMAGE_INFO_URL}{team}", timeout=5).read()
         except:
             return {"error": "Something went wrong getting data from the scoreboard"}
 
