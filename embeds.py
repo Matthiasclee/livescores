@@ -113,9 +113,9 @@ Division: {state_division[0]}/{state_division[1]}, {state_division[2]}%"
 
     for image in image_data:
         embed.add_field(
-                name=f"{image['image']}: {image['ccs_score']} points",
+                name=f"{image['image']}: {image['ccs_score']} point{'' if image['ccs_score'] in [1,'1'] else 's'}",
                 value=f"Found: {image['found']}/{image['found']+image['remaining']}, \
-{image['penalties']} penalties, Total: {image['ccs_score']} points\nTime: {image['duration']}{(', Warnings: ' + image['code']) if image['code'] != '' else ''}",
+{image['penalties']} penalt{'y' if image['penalties'] in [1,'1'] else 'ies'}, Total: {image['ccs_score']} point{'' if image['ccs_score'] in [1,'1'] else 's'}\nTime: {image['duration']}{(', Warnings: ' + image['code']) if image['code'] != '' else ''}",
                 inline=False
                 )
 
