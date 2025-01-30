@@ -57,6 +57,9 @@ CCS Score: {team_data['ccs_score']}\n"
     if "score_2" in team_data:
         score_data = score_data + f"{score_2_name}: {team_data['score_2']}\n"
 
+    if "score_3" in team_data:
+        score_data = score_data + f"{score_3_name}: {team_data['score_3']}\n"
+
     if "adjustment" in team_data:
         score_data = score_data + f"Adjust: {team_data['adjustment']}"
     else:
