@@ -9,7 +9,11 @@ def make_team_embed(data, data_source):
     image_data = data["image"]
     all_team_data = data["all_team_data"]
 
-    if "score_1" in team_data and "score_2" in team_data:
+    if "score_1" in team_data and "score_2" in team_data and "score_3" in team_data:
+        score_1_name = "Boeing"
+        score_2_name = "Cisco"
+        score_3_name = "Web"
+    elif "score_1" in team_data and "score_2" in team_data:
         score_1_name = "Quiz"
         score_2_name = "Packet Tracer"
     elif "score_1" in team_data:
@@ -132,6 +136,13 @@ Division: {state_division[0]}/{state_division[1]}, {state_division[2]}%"
     if "score_2" in team_data:
         embed.add_field(
                 name=f"{score_2_name}: {team_data['score_2']} points",
+                value="",
+                inline=False
+                )
+
+    if "score_3" in team_data:
+        embed.add_field(
+                name=f"{score_3_name}: {team_data['score_3']} points",
                 value="",
                 inline=False
                 )
