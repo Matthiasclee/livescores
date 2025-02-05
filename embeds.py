@@ -3,13 +3,18 @@ import math
 from datetime import datetime
 from placement import *
 from leaderboard import *
+from settings import *
 
 def make_team_embed(data, data_source):
     team_data = data["team"]
     image_data = data["image"]
     all_team_data = data["all_team_data"]
 
-    if "score_1" in team_data and "score_2" in team_data and "score_3" in team_data:
+    score_names = get_setting("score_names")
+
+    if data_source in score_names:
+        score_1_name, score_2_name, score_3_name, score_4_name = score_names[data_source]
+    elif "score_1" in team_data and "score_2" in team_data and "score_3" in team_data:
         score_1_name = "Boeing"
         score_2_name = "Cisco"
         score_3_name = "Web"
