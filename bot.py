@@ -56,7 +56,9 @@ async def leaderboard_command(interaction: discord.Interaction, page: int = 1, d
 
     data = get_all_team_data(data_source)
 
-    if data['error']:
+    if per_page > 99:
+        embed = make_error_embed("Error", "Maximum of 99 teams per page")
+    elif data['error']:
         embed = make_error_embed("Error fetching data", data["error"])
     else:
         embed = make_leaderboard_embed(data, data_source, division, location, tier, page, per_page, highlight_teams)
