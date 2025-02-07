@@ -9,7 +9,7 @@ def determine_team_placement(team_info, all_team_data, scopes, excluded_teams = 
     if "as_together" in scopes:
         div_as_together = True
 
-        if not team_info["division"].lower() in ["Open", "Middle School"]:
+        if not team_info["division"].lower() in ["open", "middle school"]:
             division = "ALL_AS"
     else:
         div_as_together = False

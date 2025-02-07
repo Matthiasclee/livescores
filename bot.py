@@ -113,6 +113,9 @@ async def leaderboard_command(interaction: discord.Interaction, team_id: str, se
 
     team_state_data = get_data(team_id, semifinals_advancement_datasource)
 
+    if get_data(team_id, nationals_advancement_datasource)['error']:
+        nationals_data = None
+
     errors = (state_data['error'] if state_data else None) or (nationals_data['error'] if nationals_data else None) or team_state_data['error']
 
     if not state_data and not nationals_data:
