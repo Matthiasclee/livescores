@@ -9,7 +9,7 @@ def get_leaderboard(all_team_data, division, location, tier, as_together: bool =
             continue
 
         if as_together and division == "ALL_AS":
-            if not team["division"].lower() in ["open", "middle school"]:
+            if team["division"].lower() in ["open", "middle school"]:
                 continue
         else:
             if division != False and team["division"].lower() != division.lower():

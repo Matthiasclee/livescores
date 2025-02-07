@@ -249,9 +249,9 @@ def make_advancement_embed(season, team_data, state_data, nationals_data, exclud
             nats_advancement_text = f"Does not advance to nationals: rank {semis_rank} in Open Platinum"
     elif nationals_data and team_data["tier"] == "Platinum" and team_data["division"] != "Middle School": # All other AS divisions
         if semis_rank <= 2:
-            nats_advancement_text = f"Advances to nationals: rank {semis_rank} in AS Platinum"
+            nats_advancement_text = f"Advances to nationals: rank {semis_rank} in {team_data['division']}"
         else:
-            nats_advancement_text = f"Does not advance to nationals: rank {semis_rank} in AS Platinum"
+            nats_advancement_text = f"Does not advance to nationals: rank {semis_rank} in {team_data['division']}"
     elif nationals_data and team_data["Division"] == "Middle School":
         if semis_rank <= 3:
             nats_advancement_text = f"Advances to nationals: rank {semis_rank} in Middle School"
@@ -272,7 +272,7 @@ def make_advancement_embed(season, team_data, state_data, nationals_data, exclud
     state_rank = state_total_leaderboard[0]
     state_percentile = state_total_leaderboard[2]
 
-    div_rank = determine_team_placement(team_data, state_data, ["division"])[0]
+    div_rank, div_total, div_pct = determine_team_placement(team_data, state_data, ["division"])
 
     state_leaderboard = determine_team_placement(team_data, state_data, ["state"])
     individual_state_rank = state_leaderboard[0]
