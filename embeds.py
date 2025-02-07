@@ -257,6 +257,8 @@ def make_advancement_embed(season, team_data, state_data, nationals_data, exclud
             nats_advancement_text = f"Advances to nationals: rank {semis_rank} in Middle School"
         else:
             nats_advancement_text = f"Does not advance to nationals: rank {semis_rank} in Middle School"
+    elif team_data["tier"] != "Platinum":
+        nats_advancement_text = f"Cannot advance from {team_data['tier']}"
 
     if nationals_data:
         if excluded_teams != [""]:
