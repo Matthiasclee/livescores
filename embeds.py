@@ -226,6 +226,83 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
 
     return embed
 
+def make_advancement_embed(season, team_data, state_data, nationals_data):
+    embed = discord.Embed(
+        title = f"Advancement for {team_data['team_number']}",
+        description = f"Location: {team_data['location']}, Division: {team_data['division']}, Tier: {team_data['tier']}",
+        color=0
+            )
+
+    state_data = state_data['all_team_data']
+
+    if nationals_data:
+        nationals_data = nationals_data['all_team_data']
+        semis_leaderboard = determine_team_placement(team_data, nationals_data, ["division", "tier"])
+        semis_rank = semis_leaderboard[0]
+
+    if nationals_data and team_data["tier"] == "Platinum" and team_data["division"] == "Open":
+        if semis_rank >= 12:
+            nats_advancement_text = f"Advances to nationals (rank {nationals_rank}) in Open Platinum"
+        else:
+            nats_advancement_text = f"Does not advance to nationals (rank {nationals_rank}) in Open Platinum"
+    elif nationals_data and team_data["tier"] == "Platinum" and team_data["division"] != "Middle School": # All other AS divisions
+        if semis_rank >= 2:
+            nats_advancement_text = f"Advances to nationals (rank {nationals_rank}) in AS Platinum"
+        else:
+            nats_advancement_text = f"Does not advance to nationals (rank {nationals_rank}) in AS Platinum"
+    elif nationals_data and team_data["Division"] == "Middle School":
+        if semis_rank >= 3:
+            nats_advancement_text = f"Advances to nationals (rank {nationals_rank}) in Middle School"
+        else:
+            nats_advancement_text = f"Does not advance to nationals (rank {nationals_rank}) in Middle School"
+
+    if nationals_data:
+        embed.add_field(
+            name = "Nationals Advancement",
+            value = nats_advancement_text,
+            inline = False
+                )
+
+    state_total_leaderboard = determine_team_placement(team_data, state_data, ["division", "tier", "as_together"])
+    state_rank = state_total_leaderboard[0]
+    state_percentile = state_total_leaderboard[2]
+
+    div_rank = determine_team_placement(team_data, state_data, ["division"])[0]
+
+    state_leaderboard = determine_team_placement(team_data, state_data, ["state"])
+    individual_state_rank = state_leaderboard[0]
+
+    if team_data["division"] == "Open":
+        if state_percentile >= 75:
+            state_advancement_text = f"Advances to semifinals (top {state_percentile}%) in state round"
+        elif individual_state_rank == 1:
+            state_advancement_text = f"Advances to semifinals (first in {team_data['location']})"
+        else:
+            state_advancement_text = f"Does not advance to semifinals (only top {state_percentile}% and no state wildcard)" 
+    elif team_data["division"] == "Middle School":
+        if state_percentile >= 40:
+            state_advancement_text = f"Advances to semifinals (top {state_percentile}%) in state round"
+        elif individual_state_rank == 1:
+            state_advancement_text = f"Advances to semifinals (first in {team_data['location']})"
+        else:
+            state_advancement_text = f"Does not advance to semifinals (only top {state_percentile}% and no state wildcard)" 
+    else:
+        if state_percentile >= 75:
+            state_advancement_text = f"Advances to semifinals (top {state_percentile}%) in state round"
+        elif div_rank == 1:
+            state_advancement_text = f"Advances to semifinals (first in {team_data['division']})"
+        else:
+            state_advancement_text = f"Does not advance to semifinals (only top {state_percentile}% and no category wildcard)" 
+
+    embed.add_field(
+        name = "Semifinals Advancement",
+        value = state_advancement_text,
+        inline = False
+            )
+
+    return embed
+
+
 def make_datasources_embed(datasources):
     embed = discord.Embed(
         title = f"Data Sources",

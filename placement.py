@@ -6,6 +6,15 @@ def determine_team_placement(team_info, all_team_data, scopes):
     else:
         division = False
 
+    if "as_together" in scopes:
+        div_as_together = True
+
+        if not team_info["division"].lower() in ["Open", "Middle School"]:
+            division = "ALL_AS"
+    else:
+        div_as_together = False
+
+
     if "state" in scopes:
         location = team_info["location"]
     else:
@@ -16,7 +25,7 @@ def determine_team_placement(team_info, all_team_data, scopes):
     else:
         tier = False
 
-    team_data = get_leaderboard(all_team_data, division, location, tier)
+    team_data = get_leaderboard(all_team_data, division, location, tier, div_as_together)
 
     for i, score_data in enumerate(team_data):
         if score_data[1] == team_info["team_number"]:

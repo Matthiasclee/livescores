@@ -1,8 +1,12 @@
-def get_leaderboard(all_team_data, division, location, tier):
+def get_leaderboard(all_team_data, division, location, tier, as_together=False):
     team_data = []
     for team in all_team_data["data"]:
-        if division != False and team["division"].lower() != division.lower():
-            continue
+        if as_together and division == "ALL_AS":
+            if not team["division"].lower() in ["open", "middle school"]:
+                continue
+        else:
+            if division != False and team["division"].lower() != division.lower():
+                continue
 
         if location != False and team["location"].lower() != location.lower():
             continue
