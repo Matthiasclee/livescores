@@ -226,18 +226,20 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
 
     return embed
 
-def make_advancement_embed(season, team_data, state_data, nationals_data, state_ds, semis_ds):
+def make_advancement_embed(season, team_data, state_data, nationals_data, excluded_teams, state_ds, semis_ds):
     embed = discord.Embed(
         title = f"Advancement for {team_data['team_number']}",
         description = f"Location: {team_data['location']}, Division: {team_data['division']}, Tier: {team_data['tier']}",
         color=0
             )
 
+    excluded_teams = excluded_teams.split(" ")
+
     state_data = state_data['all_team_data']
 
     if nationals_data:
         nationals_data = nationals_data['all_team_data']
-        semis_leaderboard = determine_team_placement(team_data, nationals_data, ["division", "tier"])
+        semis_leaderboard = determine_team_placement(team_data, nationals_data, ["division", "tier"], excluded_teams)
         semis_rank = semis_leaderboard[0]
 
     if nationals_data and team_data["tier"] == "Platinum" and team_data["division"] == "Open":
@@ -257,6 +259,9 @@ def make_advancement_embed(season, team_data, state_data, nationals_data, state_
             nats_advancement_text = f"Does not advance to nationals: rank {semis_rank} in Middle School"
 
     if nationals_data:
+        if excluded_teams != [""]:
+            nats_advancement_text = nats_advancement_text + f"\n*The following team(s) were excluded:*\n*{', '.join(excluded_teams)}*"
+
         embed.add_field(
             name = "Nationals Advancement",
             value = nats_advancement_text,

@@ -1,6 +1,13 @@
-def get_leaderboard(all_team_data, division, location, tier, as_together=False):
+def get_leaderboard(all_team_data, division, location, tier, as_together: bool = False, excluded_teams: list = []):
+    excluded_teams_noseason = []
+    for team in excluded_teams:
+        excluded_teams_noseason.append(team.split("-")[-1])
+
     team_data = []
     for team in all_team_data["data"]:
+        if team['team_number'].split("-")[-1] in excluded_teams_noseason:
+            continue
+
         if as_together and division == "ALL_AS":
             if not team["division"].lower() in ["open", "middle school"]:
                 continue

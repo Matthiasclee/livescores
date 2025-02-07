@@ -67,10 +67,11 @@ async def leaderboard_command(interaction: discord.Interaction, page: int = 1, d
 
 @app_commands.describe(
     team_id = "Team ID",
-    season = "CyberPatriot season"
+    season = "CyberPatriot season",
+    excluded_teams = "Teams to exclude for nationals advancement (space separated)"
 )
 
-async def leaderboard_command(interaction: discord.Interaction, team_id: str, season: str = "current"):
+async def leaderboard_command(interaction: discord.Interaction, team_id: str, season: str = "current", excluded_teams: str = ""):
     await interaction.response.defer(ephemeral=False, thinking=True)
 
     season_is_current = False
@@ -119,7 +120,7 @@ async def leaderboard_command(interaction: discord.Interaction, team_id: str, se
     elif errors:
         embed = make_error_embed("Error fetching data", errors)
     else:
-        embed = make_advancement_embed(season, team_state_data['team'], state_data, nationals_data, semifinals_advancement_datasource, nationals_advancement_datasource)
+        embed = make_advancement_embed(season, team_state_data['team'], state_data, nationals_data, excluded_teams, semifinals_advancement_datasource, nationals_advancement_datasource)
 
     await interaction.followup.send(embed=embed, ephemeral=False)
 

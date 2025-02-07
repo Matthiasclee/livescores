@@ -1,6 +1,6 @@
 from leaderboard import *
 
-def determine_team_placement(team_info, all_team_data, scopes):
+def determine_team_placement(team_info, all_team_data, scopes, excluded_teams = []):
     if "division" in scopes:
         division = team_info["division"]
     else:
@@ -25,7 +25,7 @@ def determine_team_placement(team_info, all_team_data, scopes):
     else:
         tier = False
 
-    team_data = get_leaderboard(all_team_data, division, location, tier, div_as_together)
+    team_data = get_leaderboard(all_team_data, division, location, tier, as_together=div_as_together, excluded_teams=excluded_teams)
 
     for i, score_data in enumerate(team_data):
         if score_data[1] == team_info["team_number"]:
