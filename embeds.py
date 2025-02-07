@@ -226,7 +226,7 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
 
     return embed
 
-def make_advancement_embed(season, team_data, state_data, nationals_data):
+def make_advancement_embed(season, team_data, state_data, nationals_data, state_ds, semis_ds):
     embed = discord.Embed(
         title = f"Advancement for {team_data['team_number']}",
         description = f"Location: {team_data['location']}, Division: {team_data['division']}, Tier: {team_data['tier']}",
@@ -299,6 +299,12 @@ def make_advancement_embed(season, team_data, state_data, nationals_data):
         value = state_advancement_text,
         inline = False
             )
+
+    ds_footer = f"State data from {state_ds}"
+    if nationals_data:
+        ds_footer = ds_footer + f"\nSemifinals data from {semis_ds}"
+
+    embed.set_footer(text=f"{ds_footer}\n{datetime.now().strftime('%b %d %Y %I:%M %p')}")
 
     return embed
 
