@@ -252,7 +252,7 @@ def make_advancement_embed(season, team_data, state_data, nationals_data, exclud
             nats_advancement_text = f"Advances to nationals: rank {semis_rank} in {team_data['division']}"
         else:
             nats_advancement_text = f"Does not advance to nationals: rank {semis_rank} in {team_data['division']}"
-    elif nationals_data and team_data["Division"] == "Middle School":
+    elif nationals_data and team_data["division"] == "Middle School":
         if semis_rank <= 3 and semis_rank != 0:
             nats_advancement_text = f"Advances to nationals: rank {semis_rank} in Middle School"
         else:
