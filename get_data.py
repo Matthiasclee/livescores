@@ -64,7 +64,7 @@ def get_data(team, data_source):
     image_data = json.loads(image_json_data)["data"]
 
     if len(team_data) != 1:
-        return {"error": "Team not found"}
+        return {"error": "Team not found. Try specifying a data source from `/datasources`."}
 
     if "location" not in team_data[0]:
         team_data[0]["location"] = "N/A"
