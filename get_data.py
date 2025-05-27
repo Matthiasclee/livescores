@@ -30,7 +30,9 @@ def get_all_team_data(data_source):
     return { "all_team_data": all_team_data, "error": False }
 
 def get_data(team, data_source):
-    if len(team) == 4:
+    if len(team) == 4 and not data_source == "live scoreboard":
+        team = f"{data_source[2:4]}-{team}"
+    elif len(team) == 4:
         team = f"{get_setting('season')}-{team}"
 
     if data_source == "live scoreboard":
