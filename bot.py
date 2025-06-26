@@ -138,5 +138,12 @@ async def datasources_command(interaction: discord.Interaction):
 
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
+@bot.tree.command(name="help", description="LiveScores Help")
+
+async def datasources_command(interaction: discord.Interaction):
+    embed = make_help_embed()
+
+    await interaction.response.send_message(embed=embed, ephemeral=True)
+
 def start_bot():
     bot.run(get_setting("discord_secret"))

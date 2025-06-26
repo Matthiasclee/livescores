@@ -328,6 +328,51 @@ def make_datasources_embed(datasources):
 
     return embed
 
+def make_help_embed():
+    embed = discord.Embed(
+        title = f"CyberScores Help",
+        description = f"Learn more [here](https://github.com/Matthiasclee/livescores/blob/master/readme.md)",
+        color=0
+    )
+
+    embed.add_field(
+            name="`/team <team id> [data source]`",
+            value="Get score data for `<team id>` from `[data source]`. If no data source is specified, data is gotten live from the scoreboard",
+            inline=False
+    )
+
+    embed.add_field(
+            name="`/leaderboard [page] [division] [location] [tier] [teams per page] [teams to highlight] [data source]`",
+            value="Gets leaderboard data with the options specified",
+            inline=False
+    )
+
+    embed.add_field(
+            name="`/datasources`",
+            value="Lists all valid historical data sources",
+            inline=False
+    )
+
+    embed.add_field(
+            name="`/advancement [team] [season] [excluded teams]`",
+            value="Gets team advancement data for team `[team]` in CyberPatriot `[season]`, excluding `[excluded teams]`",
+            inline=False
+    )
+
+    embed.add_field(
+            name="`/help`",
+            value="Shows this menu",
+            inline=False
+    )
+
+    embed.add_field(
+            name="Join our Discord!",
+            value="[discord.gg/ysxkPsGQtn](https://discord.com/invite/ysxkPsGQtn)",
+            inline=False
+    )
+
+    return embed
+
 def make_error_embed(title, message):
     embed = discord.Embed(
         title = title,
