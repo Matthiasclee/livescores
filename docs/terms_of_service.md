@@ -1,6 +1,6 @@
 # Terms of Service
 
-LiveScores is a Discord bot providing live and historical CyberPatriot team and score data.
+LiveScores is a Discord bot providing live and historical CyberPatriot team and score data. LiveScores is not affiliated with CyberPatriot.
 
 <br>
 
