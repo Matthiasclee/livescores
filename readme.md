@@ -11,6 +11,7 @@ Invite: [https://discord.com/oauth2/authorize?client_id=1313965570068185118](htt
 * `/leaderboard [page] [division] [location] [tier] [teams per page] [teams to highlight] [data source]`: Gets leaderboard data with the options specified
 * `/datasources`: Lists all valid historical data sources
 * `/advancement [team] [season] [excluded teams]`: Gets team advancement data for `[team]` in CyberPatriot `[season]`, excluding `[excluded teams]`
+* `/help`: Shows the help menu
 
 ## Running the bot
 To run the bot, run `python3 main.py`
