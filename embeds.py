@@ -331,8 +331,7 @@ def make_datasources_embed(datasources):
 def make_help_embed():
     embed = discord.Embed(
         title = f"CyberScores Help",
-        #description = f"Join our Discord server! [discord.gg/ysxkPsGQtn](https://discord.com/invite/ysxkPsGQtn)",
-        description = f"Learn more [here](https://github.com/Matthiasclee/livescores/blob/master/readme.md)",
+        description = f"[**Join our Discord server!**](https://discord.com/invite/ysxkPsGQtn) | [Learn more](https://github.com/Matthiasclee/livescores/blob/master/readme.md) | [Github](https://github.com/Matthiasclee/livescores)",
         color=0
     )
 
@@ -365,8 +364,6 @@ def make_help_embed():
             value="Shows this menu",
             inline=False
     )
-
-    embed.set_footer(text=f"Learn more [here](https://github.com/Matthiasclee/livescores/blob/master/readme.md) | [Github](https://github.com/Matthiasclee/livescores) | [Privacy Policy](https://github.com/Matthiasclee/livescores/blob/master/docs/privacy_policy.md) | [ToS](https://github.com/Matthiasclee/livescores/blob/master/docs/terms_of_service.md)")
 
     return embed
 
