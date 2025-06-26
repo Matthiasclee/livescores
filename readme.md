@@ -2,7 +2,7 @@
 LiveScores is a discord bot that provides live data from the [CyberPatriot Scoreboard](https://scoreboard.uscyberpatriot.org).
 LiveScores can also provide archived historical data.
 <br>
-Discord: [https://discord.gg/KQYF72KmWz](https://discord.gg/KQYF72KmWz)
+CyberPatriot Discord: [https://discord.gg/5gwnW7sTwv](https://discord.gg/5gwnW7sTwv)
 <br>
 Invite: [https://discord.com/oauth2/authorize?client_id=1313965570068185118](https://discord.com/oauth2/authorize?client_id=1313965570068185118)
 
@@ -25,3 +25,7 @@ To run the bot, copy `settings_template.json` to `settings.json`. Put your disco
 ### Archiving historical data
 To archive historical data, run `python3 download_data.py <name>` where `<name>` is the name of the datasource.
 After doing this, you will need to add `<name>` to `"valid_data_sources"` in settings to make the source usable.
+
+<br>
+
+[Privacy Policy](https://github.com/Matthiasclee/livescores/blob/master/docs/privacy_policy.md) | [Terms of Service](https://github.com/Matthiasclee/livescores/blob/master/docs/terms_of_service.md)
