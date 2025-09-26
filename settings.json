@@ -1,0 +1,43 @@
+{
+  "valid_data_sources": [
+    "**__CP-XVII__**",
+    "cp17_r4",
+    "cp17_r3",
+    "cp17_r2",
+    "cp17_r1"
+  ],
+  "additional_data_sources": [
+    "**__CP-XVIII__**",
+    "cp18_sp",
+    "**__CP-XVII__**",
+    "cp17_r4_0205_0700",
+    "cp17_r4_0130_1315",
+    "cp17_r4_0125_1900",
+    "cp17_r3_1219_1400"
+  ],
+  "score_names": {
+    "cp17_r4": [
+      "Boeing", "Cisco", "Web", ""
+    ],
+    "cp17_r3": [
+      "Quiz", "Packet Tracer", "", ""
+    ],
+    "cp17_r2": [
+      "Cisco", "", "", ""
+    ],
+    "cp17_r1": [
+      "Cisco", "", "", ""
+    ],
+    "cp17_r4_0205_0700": [
+      "Boeing", "Cisco", "Web", ""
+    ],
+    "cp17_r4_0130_1315": [
+      "Boeing", "Cisco", "Web", ""
+    ],
+    "cp17_r4_0125_1900": ["", "", "", ""],
+    "cp17_r3_1219_1400": [
+      "Quiz", "Packet Tracer", "", ""
+    ]
+  },
+  "season": "18"
+}

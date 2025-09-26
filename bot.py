@@ -153,4 +153,4 @@ async def help_command(interaction: discord.Interaction):
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
 def start_bot():
-    bot.run(get_setting("discord_secret"))
+    bot.run(get_secret("discord_secret"))
