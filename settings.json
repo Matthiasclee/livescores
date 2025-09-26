@@ -16,6 +16,9 @@
     "cp17_r3_1219_1400"
   ],
   "score_names": {
+    "live scoreboard": [
+      "", "", "", ""
+    ],
     "cp17_r4": [
       "Boeing", "Cisco", "Web", ""
     ],
