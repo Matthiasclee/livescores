@@ -73,7 +73,7 @@ async def leaderboard_command(interaction: discord.Interaction, page: int = 1, d
     excluded_teams = "Teams to exclude for nationals advancement (space separated)"
 )
 
-async def leaderboard_command(interaction: discord.Interaction, team_id: str, season: str = "current", excluded_teams: str = ""):
+async def advancement_command(interaction: discord.Interaction, team_id: str, season: str = "current", excluded_teams: str = ""):
     await interaction.response.defer(ephemeral=False, thinking=True)
 
     season_is_current = False
