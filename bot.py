@@ -131,8 +131,15 @@ async def leaderboard_command(interaction: discord.Interaction, team_id: str, se
 
 @bot.tree.command(name="datasources", description="Show all data sources")
 
-async def datasources_command(interaction: discord.Interaction):
+@app_commands.describe(
+    extra_sources = "Show extra sources (true/false)"
+)
+
+async def datasources_command(interaction: discord.Interaction, extra_sources: str = "false"):
     datasources = get_setting("valid_data_sources")
+
+    if extra_sources == "true":
+        datasources = get_setting("additional_data_sources")
 
     embed = make_datasources_embed(datasources)
 
@@ -140,7 +147,7 @@ async def datasources_command(interaction: discord.Interaction):
 
 @bot.tree.command(name="help", description="LiveScores Help")
 
-async def datasources_command(interaction: discord.Interaction):
+async def help_command(interaction: discord.Interaction):
     embed = make_help_embed()
 
     await interaction.response.send_message(embed=embed, ephemeral=True)
