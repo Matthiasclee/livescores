@@ -341,7 +341,7 @@ def make_help_embed():
 
     embed.add_field(
             name="`/team <team id> [data source]`",
-            value="Get score data for `<team id>` from `[data source]`. If no data source is specified, data is gotten live from the scoreboard",
+            value="Get score data for `<team id>` from `[data source]`; if no data source is specified, data is gotten live from the scoreboard",
             inline=False
     )
 
@@ -353,7 +353,7 @@ def make_help_embed():
 
     embed.add_field(
             name="`/datasources [extra sources]`",
-            value="Lists all valid historical data sources. If `[extra sources]` is set to true, this will return extra sources including scoreboard snapshots and sneak previews.",
+            value="Lists all valid historical data sources; if `[extra sources]` is set to true, this will return extra sources including scoreboard snapshots and sneak previews",
             inline=False
     )
 
