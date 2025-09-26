@@ -352,8 +352,8 @@ def make_help_embed():
     )
 
     embed.add_field(
-            name="`/datasources`",
-            value="Lists all valid historical data sources",
+            name="`/datasources [extra sources]`",
+            value="Lists all valid historical data sources. If [extra sources] is set to true, this will return extra sources including scoreboard snapshots and sneak previews.",
             inline=False
     )
 
