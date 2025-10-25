@@ -73,14 +73,14 @@ CCS Score: {team_data['ccs_score']}\n"
     warnings_data = []
 
     for warning in list(team_data["code"]):
-        if warning == "T":
-            warnings_data.append("* Time Exceeded")
+        if warning == "W":
+            warnings_data.append("* Score Withdrawn")
         elif warning == "M":
             warnings_data.append("* Multiple Instances")
-        elif warning == "W":
-            warnings_data.append("* Score Withdrawn")
         elif warning == "S":
             warnings_data.append("* Clock Skew")
+        elif warning == "T":
+            warnings_data.append("* Time Exceeded")
         elif warning == "U":
             warnings_data.append("* Multiple UIDs")
         else:
