@@ -28,7 +28,7 @@ def get_leaderboard(all_team_data, division, location, tier, as_together: bool =
         else:
             score = int(team["ccs_score"])
         score_inverse = 2000 - score
-        time = team["play_time"]
+        time = team["score_time"]
         team_id = team["team_number"]
 
         team_data.append((f"{score_inverse}-{time}", team_id, team))
