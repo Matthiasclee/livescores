@@ -1,7 +1,6 @@
 {
   "valid_data_sources": [
     "**__CP-XVIII__**",
-    "cp18_r1",
     "**__CP-XVII__**",
     "cp17_r4",
     "cp17_r3",
@@ -10,6 +9,7 @@
   ],
   "additional_data_sources": [
     "**__CP-XVIII__**",
+    "cp18_r1_archive1",
     "cp18_sp",
     "**__CP-XVII__**",
     "cp17_r4_0205_0700",
