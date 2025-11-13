@@ -2,7 +2,7 @@
 import json
 import os
 import sys
-import urllib.request
+from urllib.request import Request, urlopen
 
 # Make an HTTP request with a User-Agent header
 def make_request(url):
