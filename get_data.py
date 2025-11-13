@@ -1,15 +1,20 @@
 import json
 import os
-import urllib.request
+from urllib.request import Request, urlopen
 from settings import *
 
 TEAM_INFO_URL = "https://scoreboard.uscyberpatriot.org/api/team/scores.php?team%5B%5D="
 IMAGE_INFO_URL = "https://scoreboard.uscyberpatriot.org/api/image/scores.php?team%5B%5D="
 
+def make_request(url):
+    req = Request(url)
+    req.add_header("User-Agent", "LiveScores Discord bot - Contact: matthias@matthiasclee.com - https://github.com/Matthiasclee/livescores")
+    return urlopen(req, timeout=5).read()
+
 def get_all_team_data(data_source):
     if data_source == "live scoreboard":
         try:
-            all_team_json_data = urllib.request.urlopen(f"{TEAM_INFO_URL}", timeout=5).read()
+            all_team_json_data = make_request(f"{TEAM_INFO_URL}")
         except:
             return {"error": "Something went wrong getting data from the scoreboard"}
 
@@ -37,8 +42,8 @@ def get_data(team, data_source):
 
     if data_source == "live scoreboard":
         try:
-            team_json_data = urllib.request.urlopen(f"{TEAM_INFO_URL}{team}", timeout=5).read()
-            image_json_data = urllib.request.urlopen(f"{IMAGE_INFO_URL}{team}", timeout=5).read()
+            team_json_data = make_request(f"{TEAM_INFO_URL}{team}")
+            image_json_data = make_request(f"{IMAGE_INFO_URL}{team}")
         except:
             return {"error": "Something went wrong getting data from the scoreboard"}
 

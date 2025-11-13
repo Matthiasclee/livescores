@@ -4,6 +4,12 @@ import os
 import sys
 import urllib.request
 
+# Make an HTTP request with a User-Agent header
+def make_request(url):
+    req = Request(url)
+    req.add_header("User-Agent", "LiveScores Discord bot scoreboard archive script - Contact: matthias@matthiasclee.com - https://github.com/Matthiasclee/livescores")
+    return urlopen(req, timeout=5).read()
+
 # Check if there is already a score archive path with the name passed in the first command line argument
 if not os.path.exists(f"score_archives/{sys.argv[1]}"):
     # Make the directory for the score archive if there isn't
@@ -18,8 +24,8 @@ IMAGE_INFO_URL = "https://scoreboard.uscyberpatriot.org/api/image/scores.php?tea
 
 # Get data from both URLs
 # If the request is sent without a specified team, it just returns all the teams.
-team_json_data = urllib.request.urlopen(TEAM_INFO_URL).read()
-image_json_data = urllib.request.urlopen(IMAGE_INFO_URL).read()
+team_json_data = make_request(TEAM_INFO_URL)
+image_json_data = make_request(IMAGE_INFO_URL)
 
 # Write the entire teams and images JSON data to a file for calculating placement
 # Open the file
