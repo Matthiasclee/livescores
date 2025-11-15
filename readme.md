@@ -22,7 +22,8 @@ To run the bot, run `python3 main.py`
 To set up the bot's token, create a file titled `secrets.json` with the following format:
 ```json
 {
-  "discord_secret": "FXRXEXEXSXTX3XWXAXRXTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX (your token here)"
+  "discord_secret": "FXRXEXEXSXTX3XWXAXRXTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX (your token here)",
+  "contact_info": "(your contact info here - this is not required for operation but is recommended, as it is required by official API documentation)"
 }
 ```
 ### Archiving historical data

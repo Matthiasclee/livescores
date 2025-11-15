@@ -7,7 +7,7 @@ from urllib.request import Request, urlopen
 # Make an HTTP request with a User-Agent header
 def make_request(url):
     req = Request(url)
-    req.add_header("User-Agent", "LiveScores Discord bot scoreboard archive script - Contact: matthias@matthiasclee.com - https://github.com/Matthiasclee/livescores")
+    req.add_header("User-Agent", "LiveScores Discord bot - https://github.com/Matthiasclee/livescores - Contact: " + get_secret("contact_info"))
     return urlopen(req, timeout=5).read()
 
 # Check if there is already a score archive path with the name passed in the first command line argument
