@@ -19,11 +19,11 @@ To run the bot, run `python3 main.py`
 * `discord` python library (`pip3 install discord`)
 * A discord bot token
 ### Settings
-To set up the bot's token, create a file titled `secrets.json` with the following format:
+To set up the bot, create a file titled `secrets.json` with the following format:
 ```json
 {
-  "discord_secret": "FXRXEXEXSXTX3XWXAXRXTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX (your token here)",
-  "contact_info": "(your contact info here - this is not required for operation but is recommended, as it is required by official API documentation)"
+  "discord_secret": "FXRXEXEXSXTX3XWXAXRXTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX (your bot token here)",
+  "contact_info": "(any contact info here - this is not required for operation but is recommended, as it is required by CyberPatriot API documentation)"
 }
 ```
 ### Archiving historical data
