@@ -6,6 +6,7 @@ LiveScores developers may have access to the following usage data:
 * Any LiveScores commands run, and IDs of the users that ran them
 * Results of any LiveScores commands run
 * Any direct messages sent to LiveScores
+* Any other baseline data listed [here](https://support.discord.com/hc/en-us/articles/7933951485975-Visibility-of-Bot-Data-Access)
 
 LiveScores does not collect, store, or sell any of the above data, however it may be periodically accessed by developers for debugging and development.
 
