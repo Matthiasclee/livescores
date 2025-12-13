@@ -195,7 +195,7 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
             x += 1
             leaderboard_data_chunks.append([])
 
-    initial_title = f"Page {page} of {math.ceil(len(all_leaderboard_data)/per_page)}, {per_page} teams per page, {len(all_leaderboard_data)} teams"
+    initial_title = f"Page {page} of {math.ceil(len(all_leaderboard_data)/per_page)}, {per_page} teams per page, {len(all_leaderboard_data)} teams total"
 
     for j, leaderboard_data_chunk in enumerate(leaderboard_data_chunks):
         leaderboard_data_text = ""
