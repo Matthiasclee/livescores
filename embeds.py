@@ -292,25 +292,25 @@ def make_advancement_embed(season, team_data, state_data, nationals_data, exclud
 
     if team_data["division"] == "Open":
         if state_percentile >= 75:
-            state_advancement_text = f"Advances to semifinals: {state_percentile}% in state round"
+            state_advancement_text = f"Advances to semifinals: **yes**\n*{state_percentile}% in state round*"
         elif individual_state_rank == 1:
-            state_advancement_text = f"Advances to semifinals: first in {team_data['location']}"
+            state_advancement_text = f"Advances to semifinals: **yes**\n*First in {team_data['location']}*"
         else:
-            state_advancement_text = f"Does not advance to semifinals: only {state_percentile}% and no state wildcard" 
+            state_advancement_text = f"Advances to semifinals: **no**\n*Only {state_percentile}% and no state wildcard*" 
     elif team_data["division"] == "Middle School":
         if state_percentile >= 40:
-            state_advancement_text = f"Advances to semifinals: {state_percentile}% in state round"
+            state_advancement_text = f"Advances to semifinals: **yes**\n*{state_percentile}% in state round*"
         elif individual_state_rank == 1:
-            state_advancement_text = f"Advances to semifinals: first in {team_data['location']}"
+            state_advancement_text = f"Advances to semifinals: **yes**\n*First in {team_data['location']}*"
         else:
-            state_advancement_text = f"Does not advance to semifinals: only {state_percentile}% and no state wildcard" 
+            state_advancement_text = f"Advances to semifinals: **no**\n*Only {state_percentile}% and no state wildcard*" 
     else:
         if state_percentile >= 75:
-            state_advancement_text = f"Advances to semifinals: {state_percentile}% in state round"
+            state_advancement_text = f"Advances to semifinals: **yes**\n*{state_percentile}% in state round*"
         elif div_rank == 1:
-            state_advancement_text = f"Advances to semifinals: first in {team_data['division']}"
+            state_advancement_text = f"Advances to semifinals: **yes**\n*First in {team_data['division']}*"
         else:
-            state_advancement_text = f"Does not advance to semifinals: only {state_percentile}% and no category wildcard" 
+            state_advancement_text = f"Advances to semifinals: **no**\n*Only {state_percentile}% and no category wildcard*" 
 
     embed.add_field(
         name = "Semifinals Advancement",
