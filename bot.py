@@ -30,6 +30,8 @@ async def on_ready():
     team_id = "Team ID",
     data_source = "Data source"
 )
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 
 async def team_command(interaction: discord.Interaction, team_id: str, data_source: str = "live scoreboard"):
     await interaction.response.defer(ephemeral=False, thinking=True)
@@ -55,6 +57,8 @@ async def team_command(interaction: discord.Interaction, team_id: str, data_sour
     highlight_teams = "Team IDs to highlight (space separated)",
     image = "Filter by image"
 )
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 
 async def leaderboard_command(interaction: discord.Interaction, page: int = 1, division: str = "all", location: str = "all", tier: str = "all", per_page: int = 15, highlight_teams: str = "", data_source: str = "live scoreboard", image: str = ""):
     await interaction.response.defer(ephemeral=False, thinking=True)
@@ -84,6 +88,8 @@ async def leaderboard_command(interaction: discord.Interaction, page: int = 1, d
     season = "CyberPatriot season",
     excluded_teams = "Teams to exclude for nationals advancement (space separated)"
 )
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 
 async def advancement_command(interaction: discord.Interaction, team_id: str, season: str = "current", excluded_teams: str = ""):
     await interaction.response.defer(ephemeral=False, thinking=True)
@@ -142,10 +148,11 @@ async def advancement_command(interaction: discord.Interaction, team_id: str, se
     await interaction.followup.send(embed=embed, ephemeral=False)
 
 @bot.tree.command(name="datasources", description="Show all data sources")
-
 @app_commands.describe(
     extra_sources = "Show extra sources (true/false)"
 )
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 
 async def datasources_command(interaction: discord.Interaction, extra_sources: str = "false"):
     datasources = get_setting("valid_data_sources")
@@ -158,6 +165,8 @@ async def datasources_command(interaction: discord.Interaction, extra_sources: s
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
 @bot.tree.command(name="help", description="LiveScores Help")
+@app_commands.allowed_installs(guilds=True, users=True)
+@app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 
 async def help_command(interaction: discord.Interaction):
     embed = make_help_embed()
