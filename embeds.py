@@ -175,7 +175,7 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
 
     embed = discord.Embed(
         title = f"Leaderboard",
-        description = f"Location: {location.upper()}, Tier: {tier.title()}{image_text}, Division: {division.title()}",
+        description = f"Location: {location.upper()}, Tier: {tier.title()}, Division: {division.title()}{image_text}",
         color=0
     )
 
