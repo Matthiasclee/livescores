@@ -175,7 +175,7 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
 
     embed = discord.Embed(
         title = f"Leaderboard",
-        description = f"Division: {division.title()}, Location: {location.upper()}, Tier: {tier.title()}{image_text}",
+        description = f"Location: {location.upper()}, Tier: {tier.title()}{image_text}, Division: {division.title()}",
         color=0
     )
 
@@ -196,7 +196,7 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
     x = 0
     for i, team in enumerate(leaderboard_data):
         leaderboard_data_chunks[x].append(team)
-        if (i+1) % 15 == 0:
+        if (i+1) % per_page == 0:
             x += 1
             leaderboard_data_chunks.append([])
 
