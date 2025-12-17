@@ -196,7 +196,7 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
     x = 0
     for i, team in enumerate(leaderboard_data):
         leaderboard_data_chunks[x].append(team)
-        if (i+1) % per_page == 0:
+        if (i+1) % 15 == 0: # 15 teams per embed
             x += 1
             leaderboard_data_chunks.append([])
 
