@@ -211,7 +211,7 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
         leaderboard_data_text = ""
 
         for i, team in enumerate(leaderboard_data_chunk):
-            info, team_id, team_all_data, team_warnings = team
+            info, team_id, _, team_all_data, team_warnings = team
             score_inv, time = info.split("-")
             score = 2000 - float(score_inv)
             score = str(round(score, 2))

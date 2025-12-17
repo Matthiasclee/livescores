@@ -6,7 +6,7 @@ def get_leaderboard(all_team_data, division, location, tier, as_together: bool =
         excluded_teams_noseason.append(team.split("-")[-1])
 
     team_data = []
-    for team in all_team_data["data"]:
+    for i, team in enumerate(all_team_data["data"]):
         if team['team_number'].split("-")[-1] in excluded_teams_noseason:
             continue
 
@@ -48,7 +48,7 @@ def get_leaderboard(all_team_data, division, location, tier, as_together: bool =
             time = team["score_time"]
             warnings = team["code"]
 
-        team_data.append((f"{score_inverse}-{time}", team_id, team, warnings))
+        team_data.append((f"{score_inverse}-{time}", team_id, i, team, warnings))
 
     team_data.sort()
     
