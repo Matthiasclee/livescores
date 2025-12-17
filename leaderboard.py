@@ -1,4 +1,6 @@
-def get_leaderboard(all_team_data, division, location, tier, as_together: bool = False, excluded_teams: list = []):
+from get_data import extract_team_image_data
+
+def get_leaderboard(all_team_data, division, location, tier, as_together: bool = False, excluded_teams: list = [], all_image_data: list = {}, image: str = ""):
     excluded_teams_noseason = []
     for team in excluded_teams:
         excluded_teams_noseason.append(team.split("-")[-1])
@@ -21,17 +23,32 @@ def get_leaderboard(all_team_data, division, location, tier, as_together: bool =
         if tier != False and "tier" in team and team["tier"].lower() != tier.lower():
             continue
 
-        if "total" in team and team["total"] == "":
-            score = 0.00
-        elif "total" in team:
-            score = float(team["total"])
-        else:
-            score = int(team["ccs_score"])
-        score_inverse = 2000 - score
-        time = team["score_time"]
         team_id = team["team_number"]
 
-        team_data.append((f"{score_inverse}-{time}", team_id, team))
+        if image != "":
+            team_image = extract_team_image_data(team_id, image, all_image_data["all_image_data"])
+
+            if team_image["error"]:
+                continue
+
+            team_image = team_image["image"]
+
+            score_inverse = 2000 - team_image["ccs_score"]
+            time = team_image["duration"]
+            warnings = team_image["code"]
+        else:
+            if "total" in team and team["total"] == "":
+                score = 0.00
+            elif "total" in team:
+                score = float(team["total"])
+            else:
+                score = int(team["ccs_score"])
+
+            score_inverse = 2000 - score
+            time = team["score_time"]
+            warnings = team["code"]
+
+        team_data.append((f"{score_inverse}-{time}", team_id, team, warnings))
 
     team_data.sort()
     

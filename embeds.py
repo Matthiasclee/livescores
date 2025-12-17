@@ -165,12 +165,17 @@ Division: {state_division[0]}/{state_division[1]}, {state_division[2]}%"
 
     return embed
 
-def make_leaderboard_embed(data, data_source, division, location, tier, page, per_page, highlight_teams):
+def make_leaderboard_embed(data, data_source, division, location, tier, page, per_page, highlight_teams, image_data, image_name):
     highlight_teams = highlight_teams.split(" ")
+
+    if image_name != "":
+        image_text = f"\nImage: {image_name}"
+    else:
+        image_text = ""
 
     embed = discord.Embed(
         title = f"Leaderboard",
-        description = f"Division: {division.title()}, Location: {location.upper()}, Tier: {tier.title()}",
+        description = f"Division: {division.title()}, Location: {location.upper()}, Tier: {tier.title()}{image_text}",
         color=0
     )
 
@@ -184,7 +189,7 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
     start = per_page * (page - 1)
     end = start + per_page
 
-    all_leaderboard_data = get_leaderboard(data["all_team_data"], division, location, tier)
+    all_leaderboard_data = get_leaderboard(data["all_team_data"], division, location, tier, all_image_data=image_data, image=image_name)
     leaderboard_data = all_leaderboard_data[start:end]
 
     leaderboard_data_chunks = [[]]
@@ -206,14 +211,13 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
         leaderboard_data_text = ""
 
         for i, team in enumerate(leaderboard_data_chunk):
-            info, team_id, team_all_data = team
+            info, team_id, team_all_data, team_warnings = team
             score_inv, time = info.split("-")
             score = 2000 - float(score_inv)
             score = str(round(score, 2))
 
             team_location = team_all_data["location"]
             team_division = team_all_data["division"]
-            team_warnings = team_all_data["code"]
 
             if "tier" in team_all_data and team_all_data["tier"] != "Middle School":
                 tier_text = f" {team_all_data['tier']}"

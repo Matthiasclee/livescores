@@ -11,7 +11,11 @@ bot = commands.Bot(command_prefix="!livescores", intents=intents)
 
 @bot.event
 async def on_ready():
-    print(f"Logged in as {bot.user}, bot is in {len(bot.guilds)} guilds.")
+    if len(bot.guilds) == 1:
+        s_text = ""
+    else:
+        s_text = "s"
+    print(f"Logged in as {bot.user}, bot is in {len(bot.guilds)} guild{s_text}.")
 
     try:
         synced = await bot.tree.sync()
@@ -48,20 +52,28 @@ async def team_command(interaction: discord.Interaction, team_id: str, data_sour
     tier = "Tier",
     per_page = "Teams per page",
     data_source = "Data source",
-    highlight_teams = "Team IDs to highlight (space separated)"
+    highlight_teams = "Team IDs to highlight (space separated)",
+    image = "Filter by image"
 )
 
-async def leaderboard_command(interaction: discord.Interaction, page: int = 1, division: str = "all", location: str = "all", tier: str = "all", per_page: int = 15, highlight_teams: str = "", data_source: str = "live scoreboard"):
+async def leaderboard_command(interaction: discord.Interaction, page: int = 1, division: str = "all", location: str = "all", tier: str = "all", per_page: int = 15, highlight_teams: str = "", data_source: str = "live scoreboard", image: str = ""):
     await interaction.response.defer(ephemeral=False, thinking=True)
 
     data = get_all_team_data(data_source)
+    
+    if image != "":
+        image_data = get_all_image_data(data_source)
+    else:
+        image_data = {"error": False}
 
     if per_page > 90:
         embed = make_error_embed("Error", "Maximum of 90 teams per page")
     elif data['error']:
         embed = make_error_embed("Error fetching data", data["error"])
+    elif image_data['error']:
+        embed = make_error_embed("Error fetching image data", image_data["error"])
     else:
-        embed = make_leaderboard_embed(data, data_source, division, location, tier, page, per_page, highlight_teams)
+        embed = make_leaderboard_embed(data, data_source, division, location, tier, page, per_page, highlight_teams, image_data, image)
 
     await interaction.followup.send(embed=embed, ephemeral=False)
 

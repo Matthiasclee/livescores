@@ -34,6 +34,42 @@ def get_all_team_data(data_source):
 
     return { "all_team_data": all_team_data, "error": False }
 
+def get_all_image_data(data_source):
+    if data_source == "live scoreboard":
+        try:
+            all_image_json_data = make_request(f"{IMAGE_INFO_URL}")
+        except:
+            return {"error": "Something went wrong getting data from the scoreboard"}
+
+        if len(all_image_json_data) < 4:
+            return {"error": "Scoreboard is not live at this time. Try specifying a historical data source from `/datasources`."}
+    else:
+        if not os.path.exists(f"score_archives/{data_source}") or not (data_source in get_setting("valid_data_sources") or data_source in get_setting("additional_data_sources")):
+            return {"error": "Invalid data source"}
+
+        all_images_path = f"score_archives/{data_source}/images_all.json"
+
+        all_images_file = open(all_images_path)
+        all_image_json_data = all_images_file.read()
+        all_images_file.close()
+
+    all_image_data = json.loads(all_image_json_data)
+
+    return { "all_image_data": all_image_data, "error": False }
+
+def extract_team_image_data(team, image, all_image_data):
+    if len(team) == 4 and not data_source == "live scoreboard":
+        team = f"{data_source[2:4]}-{team}"
+    elif len(team) == 4:
+        team = f"{get_setting('season')}-{team}"
+
+    image = [d for d in all_image_data["data"] if d['team_number'] == team and d['image'] == image]
+
+    if len(image) == 0:
+        return {"error": f"Team and image not found in specified data source"}
+    else:
+        return {"image": image[0], "error": False}
+
 def get_data(team, data_source):
     if len(team) == 4 and not data_source == "live scoreboard":
         team = f"{data_source[2:4]}-{team}"
