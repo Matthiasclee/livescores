@@ -31,6 +31,9 @@ def get_leaderboard(all_team_data, division, location, tier, as_together: bool =
             if team_image["error"]:
                 continue
 
+            if not "ccs_score" in team_image:
+                continue
+
             if team_image["ccs_score"] == "":
                 continue
 
