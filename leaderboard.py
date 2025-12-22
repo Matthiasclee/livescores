@@ -31,13 +31,10 @@ def get_leaderboard(all_team_data, division, location, tier, as_together: bool =
             if team_image["error"]:
                 continue
 
-            if not "ccs_score" in team_image:
-                continue
+            team_image = team_image["image"]
 
             if team_image["ccs_score"] == "":
                 continue
-
-            team_image = team_image["image"]
 
             score_inverse = 2000 - team_image["ccs_score"]
             time = team_image["duration"]
