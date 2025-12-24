@@ -1,6 +1,7 @@
 {
   "valid_data_sources": [
     "**__CP-XVIII__**",
+    "cp18_r3",
     "cp18_r2",
     "cp18_r1",
     "**__CP-XVII__**",
@@ -26,7 +27,10 @@
     "live scoreboard": [
       "Quiz", "Packet Tracer", "", ""
     ],
-    "cp18_r3_arvhice1": [
+    "cp18_r3": [
+      "Quiz", "Packet Tracer", "", ""
+    ],
+    "cp18_r3_archive1": [
       "Quiz", "Packet Tracer", "", ""
     ],
     "cp18_r3_postcomp": [
