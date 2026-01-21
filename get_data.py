@@ -22,7 +22,7 @@ def get_all_team_data(data_source):
             return {"error": "Scoreboard is not live at this time. Try specifying a historical data source from `/datasources`."}
     else:
         if not os.path.exists(f"score_archives/{data_source}") or not (data_source in get_setting("valid_data_sources") or data_source in get_setting("additional_data_sources")):
-            return {"error": "Invalid data source"}
+            return {"error": "Invalid data source - see `/datasources` for all valid data sources"}
 
         all_teams_path = f"score_archives/{data_source}/teams_all.json"
 
@@ -45,7 +45,7 @@ def get_all_image_data(data_source):
             return {"error": "Scoreboard is not live at this time. Try specifying a historical data source from `/datasources`."}
     else:
         if not os.path.exists(f"score_archives/{data_source}") or not (data_source in get_setting("valid_data_sources") or data_source in get_setting("additional_data_sources")):
-            return {"error": "Invalid data source"}
+            return {"error": "Invalid data source - see `/datasources` for all valid data sources"}
 
         all_images_path = f"score_archives/{data_source}/images_all.json"
 
@@ -87,7 +87,7 @@ def get_data(team, data_source):
             return {"error": "Scoreboard is not live at this time. Try specifying a historical data source from `/datasources`."}
     else:
         if not os.path.exists(f"score_archives/{data_source}") or not (data_source in get_setting("valid_data_sources") or data_source in get_setting("additional_data_sources")):
-            return {"error": "Invalid data source"}
+            return {"error": "Invalid data source - see `/datasources` for all valid data sources"}
 
         team_path = f"score_archives/{data_source}/{team}_team.json"
         image_path = f"score_archives/{data_source}/{team}_image.json"
