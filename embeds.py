@@ -357,7 +357,7 @@ def make_help_embed():
     )
 
     embed.add_field(
-            name="`/leaderboard [page] [division] [location] [tier] [teams per page] [teams to highlight] [data source]`",
+            name="`/leaderboard [page] [division] [location] [tier] [teams per page] [teams to highlight] [data source] [image]`",
             value="Gets leaderboard data with the options specified",
             inline=False
     )
