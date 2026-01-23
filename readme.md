@@ -7,11 +7,7 @@ CyberPatriot Discord: [https://discord.gg/5gwnW7sTwv](https://discord.gg/5gwnW7s
 Invite: [https://discord.com/oauth2/authorize?client_id=1313965570068185118](https://discord.com/oauth2/authorize?client_id=1313965570068185118)
 
 ## Using the bot
-* `/team <team id> [data source]`: Get score data for `<team id>` from `[data source]`. If no data source is specified, data is gotten live from the scoreboard
-* `/leaderboard [page] [division] [location] [tier] [teams per page] [teams to highlight] [data source] [image]`: Gets leaderboard data with the options specified
-* `/datasources`: Lists all valid historical data sources
-* `/advancement [team] [season] [excluded teams]`: Gets team advancement data for `[team]` in CyberPatriot `[season]`, excluding `[excluded teams]`
-* `/help`: Shows the help menu
+See the `/help` command for details on usage.
 
 ## Running the bot
 To run the bot, run `python3 main.py`

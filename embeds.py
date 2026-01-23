@@ -358,7 +358,7 @@ def make_help_embed():
 
     embed.add_field(
             name="`/leaderboard [page] [division] [location] [tier] [teams per page] [teams to highlight] [data source] [image]`",
-            value="Gets leaderboard data with the options specified",
+            value="Gets leaderboard data with the options specified\n*Note: if specified, the image parameter must be the exact official image name as it appears on the scoreboard and in the team command (e.g. Mint21_cp18_state_p). An improvement for this is in progress.*",
             inline=False
     )
 
