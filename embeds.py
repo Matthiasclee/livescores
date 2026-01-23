@@ -1,5 +1,6 @@
 import discord
 import math
+import random
 from datetime import datetime
 from placement import *
 from leaderboard import *
@@ -161,7 +162,7 @@ Division: {state_division[0]}/{state_division[1]}, {state_division[2]}%"
                 inline=False
                 )
 
-    embed.set_footer(text=f"Data from {data_source} | {datetime.now().strftime('%b %d %Y %I:%M %p')}")
+    embed.set_footer(text=f"Data from {data_source} | {datetime.now().strftime('%b %d %Y %I:%M %p')}{' | #FreeSt3wart' if random.randint(1,1984) == 1984 else ''}")
 
     return embed
 
