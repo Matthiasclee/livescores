@@ -309,13 +309,17 @@ def make_advancement_embed(season, team_data, state_data, nationals_data, exclud
             state_advancement_text = f"Advances to semifinals: **yes**\n*First in {team_data['location']}*"
         else:
             state_advancement_text = f"Advances to semifinals: **no**\n*Only {state_percentile}% and no state wildcard*" 
+
+        state_advancement_text = "Advances to semifinals: **N/A**\n*Unavailable due to advancement changes*\n*A fix is currently underway*"
     else:
         if state_percentile >= 75:
             state_advancement_text = f"Advances to semifinals: **yes**\n*{state_percentile}% in state round*"
-        elif div_rank == 1:
-            state_advancement_text = f"Advances to semifinals: **yes**\n*First in {team_data['division']}*"
+        #elif div_rank == 1:
+        #    state_advancement_text = f"Advances to semifinals: **yes**\n*First in {team_data['division']}*"
+        #else:
+        #    state_advancement_text = f"Advances to semifinals: **no**\n*Only {state_percentile}% and no category wildcard*" 
         else:
-            state_advancement_text = f"Advances to semifinals: **no**\n*Only {state_percentile}% and no category wildcard*" 
+             state_advancement_text = f"Advances to semifinals: **no**\n*Only {state_percentile}%*\n*AS wildcard calculations are currently unavailable*\n*A fix is currently underway*" 
 
     embed.add_field(
         name = "Semifinals Advancement",
