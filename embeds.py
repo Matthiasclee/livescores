@@ -346,7 +346,7 @@ def make_datasources_embed(datasources):
 def make_help_embed():
     embed = discord.Embed(
         title = f"LiveScores Help",
-        description = f"[**Join our Discord server!**](https://discord.com/invite/ysxkPsGQtn) | [Learn more](https://github.com/Matthiasclee/livescores/blob/master/readme.md) | [Github](https://github.com/Matthiasclee/livescores)",
+        description = f"[Join our Discord server](https://discord.com/invite/ysxkPsGQtn) | [Learn more](https://github.com/Matthiasclee/livescores/blob/master/readme.md) | [Github](https://github.com/Matthiasclee/livescores)",
         color=0
     )
 
