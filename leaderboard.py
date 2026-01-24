@@ -40,6 +40,9 @@ def get_leaderboard(all_team_data, division, location, tier, as_together: bool =
             time = team_image["duration"]
             warnings = team_image["code"]
         else:
+            if team["ccs_score"] == "":
+                continue
+
             if "total" in team and team["total"] == "":
                 score = 0.00
             elif "total" in team:
