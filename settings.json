@@ -25,8 +25,8 @@
     "cp17_r3_1219_1400"
   ],
   "score_names": {
-    "live scoreboard": [
-      "Score 1", "Score 2", "Score 3", ""
+    "X live scoreboard": [
+      "", "", "", ""
     ],
     "cp18_r4_postcomp": [
       "", "", "", ""

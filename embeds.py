@@ -16,19 +16,19 @@ def make_team_embed(data, data_source):
     if data_source in score_names:
         score_1_name, score_2_name, score_3_name, score_4_name = score_names[data_source]
     elif "score_1" in team_data and "score_2" in team_data and "score_3" in team_data:
-        score_1_name = "Boeing"
-        score_2_name = "Cisco"
-        score_3_name = "Web"
+        score_1_name = "Quiz (?)"
+        score_2_name = "Packet Tracer (?)"
+        score_3_name = "Web (?)"
     elif "score_1" in team_data and "score_2" in team_data:
-        score_1_name = "Quiz"
-        score_2_name = "Packet Tracer"
+        score_1_name = "Quiz (?)"
+        score_2_name = "Packet Tracer (?)"
     elif "score_1" in team_data:
-        score_1_name = "Cisco"
+        score_1_name = "Cisco (?)"
 
     if "total" not in team_data:
         total_score = 0
         
-        if "ccs_score" in team_data:
+        if "ccs_score" in team_data and team_data["ccs_score"] != "":
             total_score += int(team_data["ccs_score"])
         if "score_1" in team_data:
             total_score += int(team_data["score_1"])
