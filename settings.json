@@ -26,8 +26,11 @@
     "cp17_r3_1219_1400"
   ],
   "score_names": {
-    "X live scoreboard": [
-      "", "", "", ""
+    "live scoreboard": [
+      "Quiz", "Packet Tracer", "Web", ""
+    ],
+    "cp18_r4_quiz_pt_web": [
+      "Quiz", "Packet Tracer", "Web", ""
     ],
     "cp18_r4_quiz_pt": [
       "Quiz", "Packet Tracer", "", ""
