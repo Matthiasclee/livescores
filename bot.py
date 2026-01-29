@@ -48,19 +48,19 @@ async def team_command(interaction: discord.Interaction, team_id: str, data_sour
 @bot.tree.command(name="leaderboard", description="Gets leaderboard data")
 
 @app_commands.describe(
-    page = "Scoreboard page",
     division = "Division",
-    location = "Location",
     tier = "Tier",
+    location = "Location",
+    page = "Scoreboard page",
     per_page = "Teams per page",
-    data_source = "Data source",
     highlight_teams = "Team IDs to highlight (space separated)",
-    image = "Filter by image"
+    image = "Filter by image",
+    data_source = "Data source"
 )
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 
-async def leaderboard_command(interaction: discord.Interaction, page: int = 1, division: str = "all", location: str = "all", tier: str = "all", per_page: int = 15, highlight_teams: str = "", data_source: str = "live scoreboard", image: str = ""):
+async def leaderboard_command(interaction: discord.Interaction, division: str = "all", tier: str = "all", location: str = "all", page: int = 1, per_page: int = 15, highlight_teams: str = "", image: str = "", data_source: str = "live scoreboard"):
     await interaction.response.defer(ephemeral=False, thinking=True)
 
     data = get_all_team_data(data_source)
