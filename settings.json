@@ -12,6 +12,8 @@
   ],
   "additional_data_sources": [
     "**__CP-XVIII__**",
+    "cp18_r4_prelim",
+    "cp18_r4_quiz_pt_web",
     "cp18_r4_quiz_pt",
     "cp18_r4_postcomp",
     "cp18_r3_archive1",
@@ -27,6 +29,9 @@
   ],
   "score_names": {
     "live scoreboard": [
+      "Quiz", "Packet Tracer", "Web", ""
+    ],
+    "cp18_r4_prelim": [
       "Quiz", "Packet Tracer", "Web", ""
     ],
     "cp18_r4_quiz_pt_web": [
