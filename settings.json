@@ -1,6 +1,7 @@
 {
   "valid_data_sources": [
     "**__CP-XVIII__**",
+    "cp18_r4",
     "cp18_r3",
     "cp18_r2",
     "cp18_r1",
@@ -29,6 +30,9 @@
   ],
   "score_names": {
     "live scoreboard": [
+      "", "", "", ""
+    ],
+    "cp18_r4": [
       "Quiz", "Packet Tracer", "Web", ""
     ],
     "cp18_r4_prelim": [
