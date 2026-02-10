@@ -9,6 +9,8 @@ from embeds import *
 intents = discord.Intents.default()
 bot = commands.Bot(command_prefix="!livescores", intents=intents)
 
+default_datasource = get_setting("default_datasource")
+
 @bot.event
 async def on_ready():
     if len(bot.guilds) == 1:
@@ -33,7 +35,7 @@ async def on_ready():
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 
-async def team_command(interaction: discord.Interaction, team_id: str, data_source: str = "live scoreboard"):
+async def team_command(interaction: discord.Interaction, team_id: str, data_source: str = default_datasource):
     await interaction.response.defer(ephemeral=False, thinking=True)
 
     data = get_data(team_id, data_source)
@@ -60,7 +62,7 @@ async def team_command(interaction: discord.Interaction, team_id: str, data_sour
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
 
-async def leaderboard_command(interaction: discord.Interaction, division: str = "all", tier: str = "all", location: str = "all", page: int = 1, per_page: int = 15, highlight_teams: str = "", image: str = "", data_source: str = "live scoreboard"):
+async def leaderboard_command(interaction: discord.Interaction, division: str = "all", tier: str = "all", location: str = "all", page: int = 1, per_page: int = 15, highlight_teams: str = "", image: str = "", data_source: str = default_datasource):
     await interaction.response.defer(ephemeral=False, thinking=True)
 
     data = get_all_team_data(data_source)
