@@ -8,7 +8,7 @@ IMAGE_INFO_URL = "https://scoreboard.uscyberpatriot.org/api/image/scores.php?tea
 
 def make_request(url):
     req = Request(url)
-    req.add_header("User-Agent", "LiveScores Discord bot - https://github.com/Matthiasclee/livescores - Contact: " + get_secret("contact_info"))
+    req.add_header("User-Agent", "LiveScores Bot - https://github.com/Matthiasclee/livescores - Contact (maintainer): Matthias Lee <matthias@matthiasclee.com> - Contact (hosting this instance of LiveScores): " + get_secret("contact_info"))
     return urlopen(req, timeout=5).read()
 
 def get_all_team_data(data_source):

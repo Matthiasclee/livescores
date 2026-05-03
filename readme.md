@@ -19,7 +19,7 @@ To set up the bot, create a file titled `secrets.json` with the following format
 ```json
 {
   "discord_secret": "FXRXEXEXSXTX3XWXAXRXTXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX (your bot token here)",
-  "contact_info": "(any contact info here - this is not required for operation but is recommended, as it is required by CyberPatriot API documentation)"
+  "contact_info": "(your contact info here - this is not required, but is recommended to ensure compliance with official CyberPatriot API documentation)"
 }
 ```
 ### Archiving historical data
