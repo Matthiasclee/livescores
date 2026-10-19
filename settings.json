@@ -1,5 +1,5 @@
 {
-  "default_datasource": "cp18_r4",
+  "default_datasource": "live scoreboard",
   "valid_data_sources": [
     "**__CP-XVIII__**",
     "cp18_r4",
@@ -92,5 +92,5 @@
       "Quiz", "Packet Tracer", "", ""
     ]
   },
-  "season": "18"
+  "season": "19"
 }
