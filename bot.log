@@ -4551,3 +4551,6 @@ discord.app_commands.errors.CommandInvokeError: Command 'leaderboard' raised an 
 [2026-10-26 18:40:52] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session a59d83fe2d31199f150ce6dcc56481a1.
 [2026-10-26 19:24:28] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session a59d83fe2d31199f150ce6dcc56481a1.
 [2026-10-26 19:56:25] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session a59d83fe2d31199f150ce6dcc56481a1.
+[2026-10-26 20:22:30] [WARNING ] discord.ext.commands.bot: Privileged message content intent is missing, commands may not work as expected.
+[2026-10-26 20:22:30] [INFO    ] discord.client: logging in using static token
+[2026-10-26 20:22:31] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 8fb033e31758bb65e64a20aeb8f53e0f).
