@@ -56,7 +56,7 @@ async def team_command(interaction: discord.Interaction, team_id: str, data_sour
     page = "Scoreboard page",
     per_page = "Teams per page",
     highlight_teams = "Team IDs to highlight (space separated)",
-    image = "Filter by image",
+    image = "Image name, or score component: PT / packet tracer / cisco / quiz / web",
     data_source = "Data source"
 )
 @app_commands.allowed_installs(guilds=True, users=True)
@@ -66,8 +66,12 @@ async def leaderboard_command(interaction: discord.Interaction, division: str = 
     await interaction.response.defer(ephemeral=False, thinking=True)
 
     data = get_all_team_data(data_source)
-    
-    if image != "":
+
+    # Only fetch image data when filtering by a real image (not PT/cisco/quiz/...)
+    from leaderboard import resolve_score_component
+    is_score_component = resolve_score_component(image, data_source) is not None if image else False
+
+    if image != "" and not is_score_component:
         image_data = get_all_image_data(data_source)
     else:
         image_data = {"error": False}
