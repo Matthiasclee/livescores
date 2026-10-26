@@ -1,6 +1,73 @@
 from get_data import extract_team_image_data
+from settings import get_setting
 
-def get_leaderboard(all_team_data, division, location, tier, as_together: bool = False, excluded_teams: list = [], all_image_data: list = {}, image: str = ""):
+# Aliases users can type in the image parameter to rank by a competition score component
+_COMPONENT_ALIASES = {
+    "pt": "packet tracer",
+    "packet tracer": "packet tracer",
+    "packettracer": "packet tracer",
+    "packet-tracer": "packet tracer",
+    "cisco": "cisco",
+    "quiz": "quiz",
+    "web": "web",
+    "boeing": "boeing",
+    "score_1": "score_1",
+    "score_2": "score_2",
+    "score_3": "score_3",
+    "score1": "score_1",
+    "score2": "score_2",
+    "score3": "score_3",
+}
+
+def resolve_score_component(name, data_source):
+    """
+    If name is a known competition-score alias (PT, cisco, quiz, ...), return
+    (score_field, display_name) e.g. ("score_2", "Packet Tracer").
+    Otherwise return None (treat name as an image name).
+    """
+    if not name:
+        return None
+
+    key = name.lower().strip()
+    if key not in _COMPONENT_ALIASES:
+        return None
+
+    target = _COMPONENT_ALIASES[key]
+
+    # Direct score_N request
+    if target in ("score_1", "score_2", "score_3"):
+        return (target, target.replace("_", " ").title())
+
+    # Match against score_names for this data source when available
+    score_names = get_setting("score_names")
+    names = None
+    if data_source in score_names:
+        names = score_names[data_source]
+    else:
+        # Fallbacks used by make_team_embed when source is unknown
+        names = ["Quiz", "Packet Tracer", "Web", ""]
+
+    target_l = target.lower()
+    for i, n in enumerate(names[:3]):
+        if n and n.lower() == target_l:
+            return (f"score_{i + 1}", n)
+
+    # Common hard-coded fallbacks when the name isn't in score_names
+    # Packet Tracer is almost always score_2; Quiz/Boeing often score_1; Web score_3
+    fallbacks = {
+        "packet tracer": ("score_2", "Packet Tracer"),
+        "quiz": ("score_1", "Quiz"),
+        "web": ("score_3", "Web"),
+        "cisco": ("score_1", "Cisco"),   # often score_1; cp17_r4 uses score_2 — score_names handles that
+        "boeing": ("score_1", "Boeing"),
+    }
+    if target_l in fallbacks:
+        return fallbacks[target_l]
+
+    return None
+
+
+def get_leaderboard(all_team_data, division, location, tier, as_together: bool = False, excluded_teams: list = [], all_image_data: list = {}, image: str = "", score_field: str = ""):
     excluded_teams_noseason = []
     for team in excluded_teams:
         excluded_teams_noseason.append(team.split("-")[-1])
@@ -25,7 +92,18 @@ def get_leaderboard(all_team_data, division, location, tier, as_together: bool =
 
         team_id = team["team_number"]
 
-        if image != "":
+        if score_field:
+            # Rank by a competition component (Quiz / Packet Tracer / Cisco / Web / ...)
+            if score_field not in team or team[score_field] == "":
+                continue
+            try:
+                score = float(team[score_field])
+            except (TypeError, ValueError):
+                continue
+            score_inverse = 2000 - score
+            time = team.get("score_time") or "99:99:99"
+            warnings = team.get("code") or ""
+        elif image != "":
             team_image = extract_team_image_data(team_id, image, all_image_data["all_image_data"])
 
             if team_image["error"]:
