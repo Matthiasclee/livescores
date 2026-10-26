@@ -19,10 +19,37 @@ _COMPONENT_ALIASES = {
     "score3": "score_3",
 }
 
+def _score_names_for(data_source):
+    score_names = get_setting("score_names")
+    if data_source in score_names:
+        return score_names[data_source]
+    return ["Quiz", "Packet Tracer", "Web", ""]
+
+def _field_for_named_component(data_source, component_name):
+    """Return score_N for a named component (e.g. 'quiz' -> 'score_1'), or None."""
+    names = _score_names_for(data_source)
+    target = component_name.lower()
+    for i, n in enumerate(names[:3]):
+        if n and n.lower() == target:
+            return f"score_{i + 1}"
+    # Hard-coded fallbacks
+    fallbacks = {
+        "packet tracer": "score_2",
+        "quiz": "score_1",
+        "web": "score_3",
+        "boeing": "score_1",
+    }
+    return fallbacks.get(target)
+
 def resolve_score_component(name, data_source):
     """
     If name is a known competition-score alias (PT, cisco, quiz, ...), return
-    (score_field, display_name) e.g. ("score_2", "Packet Tracer").
+    (score_spec, display_name).
+
+    score_spec is either:
+      - a string like "score_2" for a single field
+      - a list of fields like ["score_1", "score_2"] for a combined total (cisco = quiz + PT)
+
     Otherwise return None (treat name as an image name).
     """
     if not name:
@@ -38,33 +65,63 @@ def resolve_score_component(name, data_source):
     if target in ("score_1", "score_2", "score_3"):
         return (target, target.replace("_", " ").title())
 
-    # Match against score_names for this data source when available
-    score_names = get_setting("score_names")
-    names = None
-    if data_source in score_names:
-        names = score_names[data_source]
-    else:
-        # Fallbacks used by make_team_embed when source is unknown
-        names = ["Quiz", "Packet Tracer", "Web", ""]
+    # cisco = Quiz + Packet Tracer combined
+    if target == "cisco":
+        quiz_f = _field_for_named_component(data_source, "quiz")
+        pt_f = _field_for_named_component(data_source, "packet tracer")
+        fields = [f for f in (quiz_f, pt_f) if f]
+        if not fields:
+            # Very old seasons where the single field is literally named Cisco
+            cisco_f = None
+            names = _score_names_for(data_source)
+            for i, n in enumerate(names[:3]):
+                if n and n.lower() == "cisco":
+                    cisco_f = f"score_{i + 1}"
+                    break
+            if cisco_f:
+                return (cisco_f, "Cisco")
+            fields = ["score_1", "score_2"]
+        return (fields, "Cisco (Quiz + PT)")
 
-    target_l = target.lower()
-    for i, n in enumerate(names[:3]):
-        if n and n.lower() == target_l:
-            return (f"score_{i + 1}", n)
-
-    # Common hard-coded fallbacks when the name isn't in score_names
-    # Packet Tracer is almost always score_2; Quiz/Boeing often score_1; Web score_3
-    fallbacks = {
-        "packet tracer": ("score_2", "Packet Tracer"),
-        "quiz": ("score_1", "Quiz"),
-        "web": ("score_3", "Web"),
-        "cisco": ("score_1", "Cisco"),   # often score_1; cp17_r4 uses score_2 — score_names handles that
-        "boeing": ("score_1", "Boeing"),
-    }
-    if target_l in fallbacks:
-        return fallbacks[target_l]
+    # Single component: quiz, packet tracer, web, boeing
+    field = _field_for_named_component(data_source, target)
+    if field:
+        # Use official score_names label only when it matches what the user asked for
+        names = _score_names_for(data_source)
+        idx = int(field[-1]) - 1
+        if idx < len(names) and names[idx] and names[idx].lower() == target:
+            display = names[idx]
+        else:
+            display = {
+                "packet tracer": "Packet Tracer",
+                "quiz": "Quiz",
+                "web": "Web",
+                "boeing": "Boeing",
+            }.get(target, target.title())
+        return (field, display)
 
     return None
+
+
+def _team_component_score(team, score_spec):
+    """
+    score_spec: "score_1" or ["score_1", "score_2"]
+    Returns float score or None if the team has no usable value.
+    """
+    fields = score_spec if isinstance(score_spec, (list, tuple)) else [score_spec]
+    total = 0.0
+    any_present = False
+    for f in fields:
+        if f not in team or team[f] == "":
+            continue
+        try:
+            total += float(team[f])
+            any_present = True
+        except (TypeError, ValueError):
+            continue
+    if not any_present:
+        return None
+    return total
 
 
 def get_leaderboard(all_team_data, division, location, tier, as_together: bool = False, excluded_teams: list = [], all_image_data: list = {}, image: str = "", score_field: str = ""):
@@ -93,12 +150,9 @@ def get_leaderboard(all_team_data, division, location, tier, as_together: bool =
         team_id = team["team_number"]
 
         if score_field:
-            # Rank by a competition component (Quiz / Packet Tracer / Cisco / Web / ...)
-            if score_field not in team or team[score_field] == "":
-                continue
-            try:
-                score = float(team[score_field])
-            except (TypeError, ValueError):
+            # Rank by a competition component (or cisco = quiz + PT)
+            score = _team_component_score(team, score_field)
+            if score is None:
                 continue
             score_inverse = 2000 - score
             time = team.get("score_time") or "99:99:99"
