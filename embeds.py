@@ -198,10 +198,19 @@ Division: {state_division[0]}/{state_division[1]}, {state_division[2]}%"
 def make_leaderboard_embed(data, data_source, division, location, tier, page, per_page, highlight_teams, image_data, image_name):
     highlight_teams = highlight_teams.split(" ")
 
-    if image_name != "":
+    # image_name may be an image (e.g. Mint21_...) or a score component alias (PT, cisco, quiz, ...)
+    score_component = resolve_score_component(image_name, data_source) if image_name else None
+    score_field = ""
+    if score_component:
+        score_field, component_display = score_component
+        image_text = f"\nComponent: {component_display}"
+        image_for_lb = ""
+    elif image_name != "":
         image_text = f"\nImage: {image_name}"
+        image_for_lb = image_name
     else:
         image_text = ""
+        image_for_lb = ""
 
     as_together = False
     division_display = division
@@ -225,7 +234,11 @@ def make_leaderboard_embed(data, data_source, division, location, tier, page, pe
     start = per_page * (page - 1)
     end = start + per_page
 
-    all_leaderboard_data = get_leaderboard(data["all_team_data"], division, location, tier, as_together=as_together, all_image_data=image_data, image=image_name)
+    all_leaderboard_data = get_leaderboard(
+        data["all_team_data"], division, location, tier,
+        as_together=as_together, all_image_data=image_data,
+        image=image_for_lb, score_field=score_field
+    )
     leaderboard_data = all_leaderboard_data[start:end]
 
     leaderboard_data_chunks = [[]]
@@ -398,7 +411,7 @@ def make_help_embed():
 
     embed.add_field(
             name="`/leaderboard [division] [tier] [location] [page] [teams per page] [teams to highlight] [image] [data source]`",
-            value="Gets leaderboard data with the options specified\n*Note: if specified, the image parameter must be the exact official image name as it appears on the scoreboard and in the team command (e.g. Mint21_cp18_state_p). An improvement for this is in progress.*",
+            value="Gets leaderboard data with the options specified\n*Image parameter: exact image name (e.g. Mint21_cp18_state_p), **or** a score component: `PT` / `packet tracer`, `cisco`, `quiz`, `web`.*",
             inline=False
     )
 
