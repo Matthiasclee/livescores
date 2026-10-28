@@ -5069,3 +5069,25 @@ aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gatewa
 [2026-10-28 12:51:36] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session f4e6f565f0a4a9302700c5775a610a15.
 [2026-10-28 14:43:54] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session f4e6f565f0a4a9302700c5775a610a15.
 [2026-10-28 15:50:41] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session f4e6f565f0a4a9302700c5775a610a15.
+[2026-10-28 16:14:04] [ERROR   ] discord.app_commands.tree: Ignoring exception in command 'advancement'
+Traceback (most recent call last):
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/app_commands/commands.py", line 859, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/livescores/bot.py", line 154, in advancement_command
+    await interaction.followup.send(embed=embed, ephemeral=False)
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/webhook/async_.py", line 1909, in send
+    data = await adapter.execute_webhook(
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10008): Unknown Message
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/app_commands/tree.py", line 1302, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/app_commands/commands.py", line 884, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/app_commands/commands.py", line 877, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'advancement' raised an exception: NotFound: 404 Not Found (error code: 10008): Unknown Message
