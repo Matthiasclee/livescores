@@ -5104,3 +5104,4 @@ discord.app_commands.errors.CommandInvokeError: Command 'advancement' raised an 
 [2026-10-28 19:38:40] [WARNING ] discord.ext.commands.bot: Privileged message content intent is missing, commands may not work as expected.
 [2026-10-28 19:38:40] [INFO    ] discord.client: logging in using static token
 [2026-10-28 19:38:40] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 7b39072a77b54daea11618df6615538a).
+[2026-10-28 22:24:14] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 7b39072a77b54daea11618df6615538a.
