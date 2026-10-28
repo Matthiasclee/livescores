@@ -4576,3 +4576,67 @@ discord.app_commands.errors.CommandInvokeError: Command 'leaderboard' raised an 
 [2026-10-27 22:04:07] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session c9c2322cbb6ba6f8b7d2bf871fe6f0a9.
 [2026-10-28 01:43:24] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session c9c2322cbb6ba6f8b7d2bf871fe6f0a9.
 [2026-10-28 02:37:36] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session c9c2322cbb6ba6f8b7d2bf871fe6f0a9.
+[2026-10-28 02:59:05] [WARNING ] discord.gateway: Shard ID None heartbeat blocked for more than 10 seconds.
+Loop thread traceback (most recent call last):
+  File "/livescores/main.py", line 3, in <module>
+    start_bot()
+  File "/livescores/bot.py", line 183, in start_bot
+    bot.run(get_secret("discord_secret"))
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/client.py", line 933, in run
+    asyncio.run(runner())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/app_commands/tree.py", line 1138, in wrapper
+    await self._call(interaction)
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/app_commands/tree.py", line 1302, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/app_commands/commands.py", line 884, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/app_commands/commands.py", line 859, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/livescores/bot.py", line 41, in team_command
+    data = get_data(team_id, data_source)
+  File "/livescores/get_data.py", line 82, in get_data
+    image_json_data = make_request(f"{IMAGE_INFO_URL}{team}")
+  File "/livescores/get_data.py", line 12, in make_request
+    return urlopen(req, timeout=5).read()
+  File "/usr/lib/python3.10/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+  File "/usr/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/usr/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/usr/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.10/urllib/request.py", line 1391, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+  File "/usr/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/usr/lib/python3.10/http/client.py", line 1312, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1358, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1307, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.10/http/client.py", line 1067, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.10/http/client.py", line 1005, in send
+    self.connect()
+  File "/usr/lib/python3.10/http/client.py", line 1477, in connect
+    super().connect()
+  File "/usr/lib/python3.10/http/client.py", line 971, in connect
+    self.sock = self._create_connection(
+  File "/usr/lib/python3.10/socket.py", line 824, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/lib/python3.10/socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+
+[2026-10-28 02:59:12] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session c9c2322cbb6ba6f8b7d2bf871fe6f0a9.
