@@ -5091,3 +5091,4 @@ Traceback (most recent call last):
   File "/home/kali/.local/lib/python3.10/site-packages/discord/app_commands/commands.py", line 877, in _do_call
     raise CommandInvokeError(self, e) from e
 discord.app_commands.errors.CommandInvokeError: Command 'advancement' raised an exception: NotFound: 404 Not Found (error code: 10008): Unknown Message
+[2026-10-28 16:54:28] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session f4e6f565f0a4a9302700c5775a610a15.
