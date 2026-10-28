@@ -5063,3 +5063,5 @@ Traceback (most recent call last):
   File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1577, in _create_direct_connection
     raise ClientConnectorDNSError(req.connection_key, exc) from exc
 aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-c.discord.gg:443 ssl:default [Name or service not known]
+[2026-10-28 08:00:35] [INFO    ] discord.gateway: Shard ID None session has been invalidated.
+[2026-10-28 08:00:40] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: f4e6f565f0a4a9302700c5775a610a15).
