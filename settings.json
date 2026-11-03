@@ -1,5 +1,5 @@
 {
-  "default_datasource": "live scoreboard",
+  "default_datasource": "cp19_r1",
   "valid_data_sources": [
     "**__CP-XIX__**",
     "cp19_r1",
