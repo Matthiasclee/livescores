@@ -11659,3 +11659,6 @@ Traceback (most recent call last):
   File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1577, in _create_direct_connection
     raise ClientConnectorDNSError(req.connection_key, exc) from exc
 aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discord.com:443 ssl:default [Name or service not known]
+[2026-11-14 22:53:05] [WARNING ] discord.ext.commands.bot: Privileged message content intent is missing, commands may not work as expected.
+[2026-11-14 22:53:05] [INFO    ] discord.client: logging in using static token
+[2026-11-14 22:53:07] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 32ef7464381e6ed57d7c1a3327a1b80f).
