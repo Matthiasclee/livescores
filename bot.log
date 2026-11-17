@@ -13096,3 +13096,52 @@ Traceback (most recent call last):
     semifinals_advancement_datasource = f"cp{season}_r3"
     ^
 IndentationError: expected an indented block after 'if' statement on line 123
+Traceback (most recent call last):
+  File "/livescores/main.py", line 1, in <module>
+    from bot import *
+  File "/livescores/bot.py", line 124
+    semifinals_advancement_datasource = f"cp{season}_r3"
+    ^
+IndentationError: expected an indented block after 'if' statement on line 123
+Traceback (most recent call last):
+  File "/livescores/main.py", line 1, in <module>
+    from bot import *
+  File "/livescores/bot.py", line 124
+    semifinals_advancement_datasource = f"cp{season}_r3"
+    ^
+IndentationError: expected an indented block after 'if' statement on line 123
+Traceback (most recent call last):
+  File "/livescores/main.py", line 1, in <module>
+    from bot import *
+  File "/livescores/bot.py", line 124
+    semifinals_advancement_datasource = f"cp{season}_r3"
+    ^
+IndentationError: expected an indented block after 'if' statement on line 123
+Traceback (most recent call last):
+  File "/livescores/main.py", line 1, in <module>
+    from bot import *
+  File "/livescores/bot.py", line 124
+    semifinals_advancement_datasource = f"cp{season}_r3"
+    ^
+IndentationError: expected an indented block after 'if' statement on line 123
+Traceback (most recent call last):
+  File "/livescores/main.py", line 1, in <module>
+    from bot import *
+  File "/livescores/bot.py", line 124
+    semifinals_advancement_datasource = f"cp{season}_r3"
+    ^
+IndentationError: expected an indented block after 'if' statement on line 123
+Traceback (most recent call last):
+  File "/livescores/main.py", line 1, in <module>
+    from bot import *
+  File "/livescores/bot.py", line 124
+    semifinals_advancement_datasource = f"cp{season}_r3"
+    ^
+IndentationError: expected an indented block after 'if' statement on line 123
+Traceback (most recent call last):
+  File "/livescores/main.py", line 1, in <module>
+    from bot import *
+  File "/livescores/bot.py", line 124
+    semifinals_advancement_datasource = f"cp{season}_r3"
+    ^
+IndentationError: expected an indented block after 'if' statement on line 123
