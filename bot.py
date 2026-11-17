@@ -114,21 +114,47 @@ async def advancement_command(interaction: discord.Interaction, team_id: str, se
     additional_data_sources = get_setting("additional_data_sources")
     all_sources = valid_data_sources + additional_data_sources
 
+    has_r3 = f"cp{season}_r3" in all_sources
+    has_r4 = f"cp{season}_r4" in all_sources
+    has_state_tiers = f"cp{season}_state_tiers" in all_sources
+
+    
+    if has_state_tiers and not has_r3:
+        tier_ds = f"cp{season}_state_tiers"
+        team_data = get_data(team_id, tier_ds)
+        if team_data["error"]:
+            embed = make_error_embed("Error fetching data", team_data["error"])
+        else:
+            t = team_data["team"]
+            tier = t.get("tier", "Unknown")
+            rank = t.get("advancement_rank", "?")
+            group_size = t.get("advancement_group_size", "?")
+            combined = t.get("combined_score", t.get("total", "?"))
+            embed = discord.Embed(
+                title=f"Advancement for {t['team_number']}",
+                description=(
+                    f"Location: {t.get('location', '?')}, "
+                    f"Division: {t.get('division', '?')}\n\n"
+                    f"**Tier: {tier}**\n"
+                    f"Rank {rank}/{group_size} in {t.get('division', '?')}\n"
+                    f"Combined R1+R2 total: {combined}"
+                ),
+                color=0
+            )
+            embed.set_footer(text=f"Data from {tier_ds}")
+        await interaction.followup.send(embed=embed, ephemeral=False)
+        return
+
+    
     round_2_data_source = False
     semifinals_advancement_datasource = False
     nationals_advancement_datasource = False
 
     if f"cp{season}_r2" in all_sources:
         round_2_data_source = f"cp{season}_r2"
-
-    
-    if f"cp{season}_r3" in all_sources:
+    if has_r3:
         semifinals_advancement_datasource = f"cp{season}_r3"
-    
-    elif f"cp{season}_state_tiers" in all_sources:
-        semifinals_advancement_datasource = f"cp{season}_state_tiers"
-
-    if f"cp{season}_r4" in all_sources:
+    if has_r4:
         nationals_advancement_datasource = f"cp{season}_r4"
 
     r2_data = get_all_team_data(round_2_data_source) if round_2_data_source else None
