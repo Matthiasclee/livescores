@@ -12850,3 +12850,9 @@ Traceback (most recent call last):
   File "/livescores/bot.py", line 70
     from leaderboard import resolve_score_component
 IndentationError: unexpected indent
+Traceback (most recent call last):
+  File "/livescores/main.py", line 1, in <module>
+    from bot import *
+  File "/livescores/bot.py", line 70
+    from leaderboard import resolve_score_component
+IndentationError: unexpected indent
