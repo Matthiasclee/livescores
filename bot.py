@@ -67,8 +67,7 @@ async def leaderboard_command(interaction: discord.Interaction, division: str = 
 
     data = get_all_team_data(data_source)
 
-    # Only fetch image data when filtering by a real image (not PT/cisco/quiz/...)
-    from leaderboard import resolve_score_component
+        from leaderboard import resolve_score_component
     is_score_component = resolve_score_component(image, data_source) is not None if image else False
 
     if image != "" and not is_score_component:
@@ -111,23 +110,30 @@ async def advancement_command(interaction: discord.Interaction, team_id: str, se
         season_is_current = True
 
     valid_data_sources = get_setting("valid_data_sources")
+    additional_data_sources = get_setting("additional_data_sources")
+    all_sources = valid_data_sources + additional_data_sources
 
     round_2_data_source = False
     semifinals_advancement_datasource = False
     nationals_advancement_datasource = False
 
-    if f"cp{season}_r2" in valid_data_sources:
+    if f"cp{season}_r2" in all_sources:
         round_2_data_source = f"cp{season}_r2"
-    if f"cp{season}_r3" in valid_data_sources:
+
+        if f"cp{season}_r3" in all_sources:
         semifinals_advancement_datasource = f"cp{season}_r3"
-    if f"cp{season}_r4" in valid_data_sources:
+    
+    elif f"cp{season}_state_tiers" in all_sources:
+        semifinals_advancement_datasource = f"cp{season}_state_tiers"
+
+    if f"cp{season}_r4" in all_sources:
         nationals_advancement_datasource = f"cp{season}_r4"
 
     r2_data = get_all_team_data(round_2_data_source) if round_2_data_source else None
     state_data = get_all_team_data(semifinals_advancement_datasource) if semifinals_advancement_datasource else None
     nationals_data = get_all_team_data(nationals_advancement_datasource) if nationals_advancement_datasource else None
 
-    if not (state_data and nationals_data):
+        if not (state_data and nationals_data):
         live_team_data = get_all_team_data("live scoreboard")
         if (not live_team_data['error']) and season_is_current and r2_data and not r2_data['error']:
             if live_team_data != r2_data and not state_data:

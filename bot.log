@@ -12844,3 +12844,9 @@ json.decoder.JSONDecodeError: Expecting ',' delimiter: line 21 column 4 (char 37
 [2026-11-17 20:14:32] [WARNING ] discord.ext.commands.bot: Privileged message content intent is missing, commands may not work as expected.
 [2026-11-17 20:14:32] [INFO    ] discord.client: logging in using static token
 [2026-11-17 20:14:34] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: c90ee44747f223e5309b788f502eaf1a).
+Traceback (most recent call last):
+  File "/livescores/main.py", line 1, in <module>
+    from bot import *
+  File "/livescores/bot.py", line 70
+    from leaderboard import resolve_score_component
+IndentationError: unexpected indent
