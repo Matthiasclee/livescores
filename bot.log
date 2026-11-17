@@ -12822,3 +12822,22 @@ Traceback (most recent call last):
   File "/usr/lib/python3.10/json/decoder.py", line 353, in raw_decode
     obj, end = self.scan_once(s, idx)
 json.decoder.JSONDecodeError: Expecting ',' delimiter: line 21 column 4 (char 372)
+Traceback (most recent call last):
+  File "/livescores/main.py", line 1, in <module>
+    from bot import *
+  File "/livescores/bot.py", line 12, in <module>
+    default_datasource = get_setting("default_datasource")
+  File "/livescores/settings.py", line 6, in get_setting
+    settings = json.load(settings_file)
+  File "/usr/lib/python3.10/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+  File "/usr/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.10/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Expecting ',' delimiter: line 21 column 4 (char 372)
+[2026-11-17 20:14:30] [WARNING ] discord.ext.commands.bot: Privileged message content intent is missing, commands may not work as expected.
+[2026-11-17 20:14:30] [INFO    ] discord.client: logging in using static token
+[2026-11-17 20:14:31] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: ddd8e44c9995b76db6d28dfece98df79).

@@ -17,7 +17,7 @@
   ],
   "additional_data_sources": [
    "**__CP-XIX__**",
-    "cp19_state_tiers"
+    "cp19_state_tiers",
    "**__CP-XVIII__**",
     "cp18_r4_prelim",
     "cp18_r4_quiz_pt_web",
