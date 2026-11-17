@@ -67,7 +67,7 @@ async def leaderboard_command(interaction: discord.Interaction, division: str = 
 
     data = get_all_team_data(data_source)
 
-        from leaderboard import resolve_score_component
+    from leaderboard import resolve_score_component
     is_score_component = resolve_score_component(image, data_source) is not None if image else False
 
     if image != "" and not is_score_component:
