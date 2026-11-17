@@ -13145,3 +13145,36 @@ Traceback (most recent call last):
     semifinals_advancement_datasource = f"cp{season}_r3"
     ^
 IndentationError: expected an indented block after 'if' statement on line 123
+Traceback (most recent call last):
+  File "/livescores/main.py", line 1, in <module>
+    from bot import *
+  File "/livescores/bot.py", line 124
+    semifinals_advancement_datasource = f"cp{season}_r3"
+    ^
+IndentationError: expected an indented block after 'if' statement on line 123
+Traceback (most recent call last):
+  File "/livescores/main.py", line 1, in <module>
+    from bot import *
+  File "/livescores/bot.py", line 124
+    semifinals_advancement_datasource = f"cp{season}_r3"
+    ^
+IndentationError: expected an indented block after 'if' statement on line 123
+Traceback (most recent call last):
+  File "/livescores/main.py", line 1, in <module>
+    from bot import *
+  File "/livescores/bot.py", line 124
+    semifinals_advancement_datasource = f"cp{season}_r3"
+    ^
+IndentationError: expected an indented block after 'if' statement on line 123
+Traceback (most recent call last):
+  File "/livescores/main.py", line 1, in <module>
+    from bot import *
+  File "/livescores/bot.py", line 124
+    semifinals_advancement_datasource = f"cp{season}_r3"
+    ^
+IndentationError: expected an indented block after 'if' statement on line 123
+[2026-11-17 20:31:26] [WARNING ] discord.ext.commands.bot: Privileged message content intent is missing, commands may not work as expected.
+[2026-11-17 20:31:26] [INFO    ] discord.client: logging in using static token
+[2026-11-17 20:31:27] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 594979086c489204143e08e04387d977).
+[2026-11-17 20:31:31] [WARNING ] discord.ext.commands.bot: Privileged message content intent is missing, commands may not work as expected.
+[2026-11-17 20:31:31] [INFO    ] discord.client: logging in using static token
