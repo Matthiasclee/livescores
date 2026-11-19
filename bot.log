@@ -13205,3 +13205,182 @@ IndentationError: expected an indented block after 'if' statement on line 123
 [2026-11-19 03:55:09] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 897b2578c839c0928d6d55785ef2d667.
 [2026-11-19 06:11:29] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 897b2578c839c0928d6d55785ef2d667.
 [2026-11-19 06:59:11] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 897b2578c839c0928d6d55785ef2d667.
+[2026-11-19 09:14:45] [ERROR   ] discord.client: Attempting a reconnect in 1.78s
+Traceback (most recent call last):
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1301, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohappyeyeballs/impl.py", line 75, in start_connection
+    sock = await _connect_sock(
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohappyeyeballs/impl.py", line 210, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "/usr/lib/python3.10/asyncio/selector_events.py", line 501, in sock_connect
+    return await fut
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/client.py", line 812, in _connect_and_send_request
+    conn = await self._connector.connect(
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 657, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1242, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1620, in _create_direct_connection
+    raise last_exc
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1589, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1298, in _wrap_create_connection
+    async with ceil_timeout(
+  File "/home/kali/.local/lib/python3.10/site-packages/async_timeout/__init__.py", line 179, in __aexit__
+    self._do_exit(exc_type)
+  File "/home/kali/.local/lib/python3.10/site-packages/async_timeout/__init__.py", line 265, in _do_exit
+    raise asyncio.TimeoutError
+asyncio.exceptions.TimeoutError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/client.py", line 728, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/gateway.py", line 392, in from_client
+    socket = await client.http.ws_connect(str(url))
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/http.py", line 571, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/client.py", line 1249, in _ws_connect
+    resp = await self.request(
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/client.py", line 858, in _request
+    resp = await handler(req)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/client.py", line 816, in _connect_and_send_request
+    raise ConnectionTimeoutError(
+aiohttp.client_exceptions.ConnectionTimeoutError: Connection timeout to host wss://gateway-us-east1-c.discord.gg/?v=10&encoding=json&compress=zlib-stream
+[2026-11-19 09:14:47] [ERROR   ] discord.client: Attempting a reconnect in 3.25s
+Traceback (most recent call last):
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1571, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1181, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1212, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/resolver.py", line 47, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.10/socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/client.py", line 728, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/gateway.py", line 392, in from_client
+    socket = await client.http.ws_connect(str(url))
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/http.py", line 571, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/client.py", line 1249, in _ws_connect
+    resp = await self.request(
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/client.py", line 858, in _request
+    resp = await handler(req)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/client.py", line 812, in _connect_and_send_request
+    conn = await self._connector.connect(
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 657, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1242, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1577, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-c.discord.gg:443 ssl:default [Name or service not known]
+[2026-11-19 09:14:50] [ERROR   ] discord.client: Attempting a reconnect in 6.48s
+Traceback (most recent call last):
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1571, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1181, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1212, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/resolver.py", line 47, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.10/socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/client.py", line 728, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/gateway.py", line 392, in from_client
+    socket = await client.http.ws_connect(str(url))
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/http.py", line 571, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/client.py", line 1249, in _ws_connect
+    resp = await self.request(
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/client.py", line 858, in _request
+    resp = await handler(req)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/client.py", line 812, in _connect_and_send_request
+    conn = await self._connector.connect(
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 657, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1242, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1577, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-c.discord.gg:443 ssl:default [Name or service not known]
+[2026-11-19 09:14:57] [ERROR   ] discord.client: Attempting a reconnect in 5.49s
+Traceback (most recent call last):
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1571, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1181, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1212, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/resolver.py", line 47, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.10/socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/client.py", line 728, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/gateway.py", line 392, in from_client
+    socket = await client.http.ws_connect(str(url))
+  File "/home/kali/.local/lib/python3.10/site-packages/discord/http.py", line 571, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/client.py", line 1249, in _ws_connect
+    resp = await self.request(
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/client.py", line 858, in _request
+    resp = await handler(req)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/client.py", line 812, in _connect_and_send_request
+    conn = await self._connector.connect(
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 657, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1242, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "/home/kali/.local/lib/python3.10/site-packages/aiohttp/connector.py", line 1577, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-c.discord.gg:443 ssl:default [Name or service not known]
+[2026-11-19 09:15:18] [INFO    ] discord.gateway: Shard ID None session has been invalidated.
+[2026-11-19 09:15:24] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 2e2d4b5db78c66ce2d8c63ddb7afa7b9).
