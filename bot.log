@@ -13403,3 +13403,6 @@ aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gatewa
 [2026-11-20 13:14:10] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 2e2d4b5db78c66ce2d8c63ddb7afa7b9.
 [2026-11-20 14:57:08] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 2e2d4b5db78c66ce2d8c63ddb7afa7b9.
 [2026-11-20 15:39:00] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 2e2d4b5db78c66ce2d8c63ddb7afa7b9.
+[2026-11-20 15:57:20] [WARNING ] discord.ext.commands.bot: Privileged message content intent is missing, commands may not work as expected.
+[2026-11-20 15:57:20] [INFO    ] discord.client: logging in using static token
+[2026-11-20 15:57:21] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 54bc2c590ddb04679678f6df2ea9b23e).
